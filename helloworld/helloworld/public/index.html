@@ -9,15 +9,20 @@
   <link rel="stylesheet" type="text/css" href="/css/clippy.css" media="all" />
 </head>
 <body>
-  <div id="container">
+  <div class="container">
+    <h1>CIS3210 Lab 1</h1>
+    <p class="lead">This is a demo of Links the cat from the 
+    <a href="https://github.com/smore-inc/clippy.js">clippy.js</a> library.</p>
+    <p>Try dragging Links around the page, or click either of the following buttons to interact with him.</p>
+    <button id="animate" class="btn">Animate</button>
+    <button id="say-hello" class="btn">Say Hello!</button>
+    <footer>
+      <small>Note: You will need a browser running Javascript for this demo.</small>
+    </footer>
   </div>
   <script type="text/javascript" src="/js/jquery.js"></script>
   <script type="text/javascript" src="/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="/js/clippy.min.js"></script>
-  <script type="text/javascript">
-    clippy.load('Links', function(agent){
-      agent.show();
-    });
-  </script>
+  <script type="text/javascript" src="/js/app.js"></script>
 </body>
 </html>
