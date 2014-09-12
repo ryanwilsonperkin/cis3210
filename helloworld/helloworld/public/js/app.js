@@ -22,4 +22,9 @@ clippy.load('Links', function(agent) {
     $('#say-hello').click(function() {
         linksAgent.speak($('#links-text').val());
     });
+
+    /* Disable reloading of page on enter in form. */
+    $('form').submit(function() {
+          return false;
+    });
 });

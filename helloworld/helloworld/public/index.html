@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <title>CIS3210 Lab 1</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -11,14 +11,23 @@
 <body>
   <div id="wrap">
     <div class="container">
-      <h1>CIS3210 Lab 1</h1>
-      <p class="lead">This is a demo of Links the cat from the 
-      <a href="https://github.com/smore-inc/clippy.js">clippy.js</a> library.</p>
-      <p>Try dragging Links around the page, or interact with him using the buttons below.</p>
-      <button id="animate" class="btn">Animate</button>
-      <select id="animation-list"></select>
-      <button id="say-hello" class="btn">Say Hello!</button>
-      <textarea id="links-text" maxlength="400"></textarea>
+      <div class="row">
+        <h1>CIS3210 Lab 1</h1>
+        <p class="lead">This is a demo of Links the cat from the 
+        <a href="https://github.com/smore-inc/clippy.js">clippy.js</a> library.</p>
+        <p>You can drag Links the cat around the page, or interact with him using these buttons.</p>
+      </div>
+      <div class="row">
+        <form class="form-inline" action="">
+          <label>Animation</label>
+          <select id="animation-list"></select>
+          <button id="animate" class="btn">Animate</button>
+          <div class="input-append">
+            <input id="links-text" type="text" class="span2" placeholder="Hello World" />
+            <button id="say-hello" class="btn">Speak!</button>
+          </div>
+        </form>
+      </div>
     </div>
     <div id="push"></div>
   </div>
