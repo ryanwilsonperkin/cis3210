@@ -1,6 +1,8 @@
 CIS3210 Lab Application
 =======================
 
+http://ryanwilsonperkin.com/cis3210
+
 This is an application under active development for my CIS3210 Computer
 Networks course at the University of Guelph.
 
