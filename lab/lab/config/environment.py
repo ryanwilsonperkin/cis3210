@@ -5,9 +5,9 @@ from mako.lookup import TemplateLookup
 from pylons.configuration import PylonsConfig
 from pylons.error import handle_mako_error
 
-import helloworld.lib.app_globals as app_globals
-import helloworld.lib.helpers
-from helloworld.config.routing import make_map
+import lab.lib.app_globals as app_globals
+import lab.lib.helpers
+from lab.config.routing import make_map
 
 def load_environment(global_conf, app_conf):
     """Configure the Pylons environment via the ``pylons.config``
@@ -23,11 +23,11 @@ def load_environment(global_conf, app_conf):
                  templates=[os.path.join(root, 'templates')])
 
     # Initialize config with the basic options
-    config.init_app(global_conf, app_conf, package='helloworld', paths=paths)
+    config.init_app(global_conf, app_conf, package='lab', paths=paths)
 
     config['routes.map'] = make_map(config)
     config['pylons.app_globals'] = app_globals.Globals(config)
-    config['pylons.h'] = helloworld.lib.helpers
+    config['pylons.h'] = lab.lib.helpers
     
     # Setup cache object as early as possible
     import pylons
