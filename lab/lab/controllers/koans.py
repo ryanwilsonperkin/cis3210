@@ -12,10 +12,12 @@ log = logging.getLogger(__name__)
 class KoansController(BaseController):
 
     def index(self):
+        """GET /koans"""
         response.headers['Content-Type'] = 'text/javascript'
         return json.dumps(koan_dict.keys())
 
     def show(self, id):
+        """GET /koans/id"""
         if id.isdigit() and 0 <= int(id) < len(koan_dict):
             id = int(id)
         else:
