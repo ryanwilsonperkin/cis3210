@@ -1,4 +1,3 @@
-
 // Fetch koan from server and insert it on the page.
 function fetchKoan(id) {
     koanDiv = $('#koan');
@@ -19,6 +18,11 @@ function fetchKoan(id) {
         koanDiv.fadeIn();
     });
 };
+
+function arrowFadeLoop() {
+    $('header .glyphicon').animate({opacity: 0.25}, {duration: 1000})
+                          .animate({opacity: 1.0}, {duration: 1000, complete: arrowFadeLoop});
+}
 
 $(document).ready(function() {
     // Populate koansList.
@@ -44,6 +48,16 @@ $(document).ready(function() {
         // Set koanSelector to reflect randomly chosen index.
         $('#koanSelector option').eq(index).prop('selected', true).trigger('change');
     });
+
+    // Add scroll event to down arrow.
+    $('header .glyphicon').click(function() {
+        $('html, body').animate({
+            scrollTop: $("#descriptionRow").offset().top
+        }, 500);
+    });
+
+    // Trigger arrow fade in/out loop.
+    arrowFadeLoop();
 
     // Initially display the first koan.
     fetchKoan(0);

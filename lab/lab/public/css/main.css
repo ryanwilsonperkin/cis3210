@@ -17,17 +17,23 @@ header .cta {
   margin: 200px auto 0;
 }
 
-header .cta h1 {
+header {
   color: #fff;
+  text-shadow: #111 0px 0px 10px;
+}
+
+header .cta h1 {
   font-size: 5em;
   font-weight: bold;
-  text-shadow: #111 0px 0px 10px;
   text-transform: uppercase;
 }
 
-header .cta p {
-  color: #fff;
-  text-shadow: #111 0px 0px 10px;
+header .glyphicon {
+  cursor: pointer;
+  position: absolute;
+  top: inherit;
+  bottom: 30px;
+  font-size: 50px;
 }
 
 section {
