@@ -5,6 +5,7 @@ function fetchKoan(id) {
     koanDiv = $('#koan');
     $.getJSON('/koans/' + id, function(koan) {
         // Clear away old koan.
+        koanDiv.hide();
         koanDiv.empty();
 
         // Insert new koan title.
@@ -14,6 +15,9 @@ function fetchKoan(id) {
         $.each(koan.text, function(index, val) {
             koanDiv.append($('<p></p>').text(val));
         });
+
+        // Fade in new koan.
+        koanDiv.fadeIn();
     });
 };
 
