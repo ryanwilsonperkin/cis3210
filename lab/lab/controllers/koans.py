@@ -12,7 +12,7 @@ log = logging.getLogger(__name__)
 class KoansController(BaseController):
 
     def index(self):
-        response.headers['content-type'] = 'text/javascript'
+        response.headers['Content-Type'] = 'text/javascript'
         return json.dumps(koan_dict.keys())
 
     def show(self, id):
