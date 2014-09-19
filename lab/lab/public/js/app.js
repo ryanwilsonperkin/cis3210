@@ -41,4 +41,7 @@ $(document).ready(function() {
         $('#koanSelector option').eq(index).prop('selected', true)
         fetchKoan(index);
     });
+
+    // Initially display the first koan.
+    fetchKoan(0);
 });
