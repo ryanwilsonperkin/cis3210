@@ -2,7 +2,7 @@ from collections import OrderedDict
 koan_dict = OrderedDict([
     ("Joshu's Dog", [
         """A monk asked Joshu, a Chinese Zen master: "Has a dog Buddha-nature or not?" """,
-        """Joshu answered: "Mu." [Mu is the negative symbol in Chinese, meaning "No thing" or "Nay." """
+        """Joshu answered: "Mu." """
     ]),
     ("Hyakujo's Fox", [
         """Once when Hyakujo delivered some Zen lectures an old man attended them, unseen by the monks. At the end of each talk when the monks left so did he. But one day he remained after they had gone, and Hyakujo asked him: "Who are you?" """,
