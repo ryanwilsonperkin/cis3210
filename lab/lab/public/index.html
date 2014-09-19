@@ -3,20 +3,24 @@
 <head>
   <title>CIS3210 Lab 2</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href='http://fonts.googleapis.com/css?family=Droid+Serif:400,700' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css" media="screen" />
   <link rel="stylesheet" type="text/css" href="/css/main.css" />
 </head>
 <body>
-  <div id="wrap">
+  <header id="intro">
+    <div class="container">
+      <div class="cta">
+        <h1>The Gateless Gate</h1>
+        <p class="lead">Study the Zen koans and become enlightened.</p>
+      </div>
+    </div>
+  </header>
+  <section id="content">
     <div class="container">
       <div class="row">
         <div class="col-xs-12">
-          <h1>CIS3210 Lab 2</h1>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-sm-4">
-          <form role="form">
+          <form role="form" id="koanForm" class="form-inline">
             <div class="form-group">
               <label for="koanSelector">Koan Selector</label>
               <select id="koanSelector" class="form-control"></select>
@@ -25,16 +29,17 @@
             <button id="fetchRandomKoan" class="btn btn-default" type="button">Random koan</button>
           </form>
         </div>
-        <div id="koan" class="col-sm-8">
+      </div>
+      <div class="row">
+        <div class="col-sm-8 col-sm-offset-2">
+          <div id="koan"></div>
         </div>
       </div>
     </div>
-    <div id="push"></div>
-  </div>
+  </section>
   <footer>
     <div class="container">
       <p>Developed by Ryan Wilson-Perkin (0719644)</p>
-      <small>Note: You will need a browser running Javascript for this demo.</small>
     </div>
   </footer>
   <script type="text/javascript" src="/js/jquery.js"></script>

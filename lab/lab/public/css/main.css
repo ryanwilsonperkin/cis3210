@@ -1,41 +1,53 @@
-/* Sticky footer style, taken from http://getbootstrap.com/2.3.2/examples/sticky-footer.html */
 html,
 body {
   height: 100%;
-  background-image: url('/img/unsplash_background.jpg');
-  background-position: center;
+}
+
+header {
+  background-image: url('/img/leaf.jpg');
+  background-position: 50% 100%;
   background-repeat: no-repeat;
   background-size: cover;
-  /* The html and body elements cannot have any padding or margin. */
-}
-
-/* Wrapper for page content to push down footer */
-#wrap {
-  min-height: 100%;
-  height: auto !important;
   height: 100%;
-  /* Negative indent footer by it's height */
-  margin: 0 auto -100px;
+  padding: 0;
+  text-align: center;
 }
 
-/* Set the fixed height of the footer here */
-#push,
-footer {
-  height: 100px;
-}
-footer {
-  background-color: rgba(255,255,255,0.75);
-}
-footer .container {
-  padding-top: 20px;
+header .cta {
+  margin: 200px auto 0;
 }
 
-/* Lastly, apply responsive CSS fixes as necessary */
-@media (max-width: 767px) {
-  footer {
-    margin-left: -20px;
-    margin-right: -20px;
-    padding-left: 20px;
-    padding-right: 20px;
-  }
+header .cta h1 {
+  color: #eee;
+  font-size: 5em;
+  font-weight: bold;
+  text-shadow: #111 0px 0px 10px;
+  text-transform: uppercase;
+}
+
+header .cta p {
+  color: #eee;
+  text-shadow: #111 0px 0px 10px;
+}
+
+#content .row {
+  padding-top: 100px;
+}
+
+#koanForm {
+  text-align: center;
+}
+
+#koan h2 {
+  font-family: 'Droid Serif', serif;
+}
+
+#koan p {
+  font-size: 1.2em;
+}
+
+footer {
+  margin-top: 50px;
+  padding-bottom: 10px;
+  text-align: center;
 }
