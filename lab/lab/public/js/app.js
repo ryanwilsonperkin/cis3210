@@ -1,4 +1,3 @@
-var g_koansList;
 
 // Fetch koan from server and insert it on the page.
 function fetchKoan(id) {
@@ -23,6 +22,7 @@ function fetchKoan(id) {
 
 $(document).ready(function() {
     // Populate koansList.
+    var g_koansList;
     $.getJSON('/koans', function(koansList) {
         g_koansList = koansList;
         $.each(koansList, function(index, val) {
