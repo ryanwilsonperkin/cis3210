@@ -21,7 +21,10 @@ class KoansController(BaseController):
         else:
             abort(404)
 
-        title, paragraphs = koan_dict.items()[id]
+        title, text = koan_dict.items()[id]
 
-        response.headers['content-type'] = 'text/javascript'
-        return json.dumps({title:paragraphs})
+        response.headers['Content-Type'] = 'text/javascript'
+        return json.dumps({
+            "title": title,
+            "text": text
+        })
