@@ -16,29 +16,40 @@
       </div>
     </div>
   </header>
-  <section id="content">
+  <section>
     <div class="container">
-      <div class="row">
+
+      <hr />
+      <div id="descriptionRow" class="row">
+        <div class="col-sm-8 col-sm-offset-2">
+          <p id="description" class="lead">Here you will find a collection of 48 Zen koans, compiled by master Mumon Ekai. Koans are a form of literary riddle, used to test your understanding of Zen philosophy.</p>
+        </div>
+      </div>
+      <hr />
+
+      <div id="koanSelectorRow" class="row">
         <div class="col-xs-12">
           <form role="form" id="koanForm" class="form-inline">
             <div class="form-group">
               <label for="koanSelector">Koan Selector</label>
               <select id="koanSelector" class="form-control"></select>
             </div>
-            <button id="fetchKoan" class="btn btn-default" type="button">Enlighten me</button>
             <button id="fetchRandomKoan" class="btn btn-default" type="button">Random koan</button>
           </form>
         </div>
       </div>
-      <div class="row">
+
+      <div id="koanRow" class="row">
         <div class="col-sm-8 col-sm-offset-2">
           <div id="koan"></div>
         </div>
       </div>
+
     </div>
   </section>
   <footer>
     <div class="container">
+      <hr />
       <p>Developed by Ryan Wilson-Perkin (0719644)</p>
     </div>
   </footer>

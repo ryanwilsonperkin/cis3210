@@ -18,7 +18,7 @@ header .cta {
 }
 
 header .cta h1 {
-  color: #eee;
+  color: #fff;
   font-size: 5em;
   font-weight: bold;
   text-shadow: #111 0px 0px 10px;
@@ -26,16 +26,29 @@ header .cta h1 {
 }
 
 header .cta p {
-  color: #eee;
+  color: #fff;
   text-shadow: #111 0px 0px 10px;
 }
 
-#content .row {
+section {
   padding-top: 100px;
+  padding-bottom: 100px;
 }
 
-#koanForm {
+#description {
+  color: #666;
+  font-family: 'Droid Serif', serif;
+  /*font-size: 30px;*/
   text-align: center;
+}
+
+#koanSelectorRow {
+  text-align: center;
+  margin-top: 100px;
+}
+
+#koanRow {
+  margin-top: 50px;
 }
 
 #koan h2 {
