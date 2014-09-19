@@ -31,9 +31,9 @@ $(document).ready(function() {
     });
 
     // Add functionality to fetchKoan.
-    $('#fetchKoan').click(function(e) {
+    $('#koanSelector').change(function() {
         // Get index of koan from value of koanSelector.
-        index = g_koansList.indexOf($('#koanSelector').val());
+        index = g_koansList.indexOf($(this).val());
         fetchKoan(index);
     });
 
@@ -42,8 +42,7 @@ $(document).ready(function() {
         // Get random index within range.
         index = Math.floor(Math.random() * g_koansList.length);
         // Set koanSelector to reflect randomly chosen index.
-        $('#koanSelector option').eq(index).prop('selected', true)
-        fetchKoan(index);
+        $('#koanSelector option').eq(index).prop('selected', true).trigger('change');
     });
 
     // Initially display the first koan.
