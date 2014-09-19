@@ -33,5 +33,5 @@ Navigate to http://localhost:5000 in your browser.
 Technologies
 ------------
 * [Pylons](http://www.pylonsproject.org/projects/pylons-framework/about)
-* [Bootstrap 2](http://getbootstrap.com/2.3.2)
+* [Bootstrap 3](http://getbootstrap.com/)
 * [jQuery](http://jquery.com/)
