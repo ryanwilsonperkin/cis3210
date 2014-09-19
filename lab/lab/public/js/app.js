@@ -37,6 +37,8 @@ $(document).ready(function() {
     $('#fetchRandomKoan').click(function(e) {
         // Get random index within range.
         index = Math.floor(Math.random() * g_koansList.length);
+        // Set koanSelector to reflect randomly chosen index.
+        $('#koanSelector option').eq(index).prop('selected', true)
         fetchKoan(index);
     });
 });
