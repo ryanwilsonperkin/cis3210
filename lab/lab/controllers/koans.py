@@ -9,6 +9,8 @@ from lab.model.koans import koan_dict
 
 log = logging.getLogger(__name__)
 
+not_implemented_msg = 'Method not yet implemented.'
+
 class KoansController(BaseController):
 
     def index(self):
@@ -42,32 +44,32 @@ class KoansController(BaseController):
         if request.method != 'POST':
             abort(405)
         else:
-            abort(403, comment='Method not yet implemented.')
+            abort(403, comment=not_implemented_msg)
 
     def new(self):
         """POST /koans/new: form for creating a new koan."""
         if request.method != 'POST':
             abort(405)
         else:
-            abort(403, comment='Method not yet implemented.')
+            abort(403, comment=not_implemented_msg)
 
     def update(self, id):
         """PUT /koans/id: update existing koan at index id."""
         if request.method != 'PUT':
             abort(405)
         else:
-            abort(403, comment='Method not yet implemented.')
+            abort(403, comment=not_implemented_msg)
 
     def delete(self, id):
         """DELETE /koans/id: delete koan at index id."""
         if request.method != 'DELETE':
             abort(405)
         else:
-            abort(403, comment='Method not yet implemented.')
+            abort(403, comment=not_implemented_msg)
 
     def edit(self, id):
         """GET /koans/id: form to edit koan at index id."""
         if request.method != 'GET':
             abort(405)
         else:
-            abort(403, comment='Method not yet implemented.')
+            abort(403, comment=not_implemented_msg)
