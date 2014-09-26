@@ -23,3 +23,31 @@ class TestKoansController(TestController):
         assert response.json_body.get('title') == koan_title
         assert response.json_body.get('text') == koan_text
 
+    def test_show_no_id(self):
+        response = self.app.get(url(controller='koans', action='show'),
+                                status=404)
+        
+        assert response.status_code == 404
+
+    def test_show_invalid_id_type(self):
+        response = self.app.get(url(controller='koans', action='show', id='a'),
+                                status=404)
+        
+        assert response.status_code == 404
+
+
+    def test_show_invalid_id_too_high(self):
+        response = self.app.get(url(controller='koans',
+                                    action='show',
+                                    id=len(koan_dict)),
+                                status=404)
+        
+        assert response.status_code == 404
+
+    def test_show_invalid_id_too_low(self):
+        response = self.app.get(url(controller='koans',
+                                    action='show',
+                                    id=-1),
+                                status=404)
+        
+        assert response.status_code == 404
