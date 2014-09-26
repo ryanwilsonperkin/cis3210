@@ -51,3 +51,32 @@ class TestKoansController(TestController):
                                 status=404)
         
         assert response.status_code == 404
+
+    # Unimplemented API endpoints due to lack of database.
+    def test_create_not_implemented(self):
+        response = self.app.post(url(controller='koans', action='create'),
+                                 status=403)
+
+        assert not_implemented_msg in response.body
+        assert response.status_code == 403
+
+    def test_new_not_implemented(self):
+        response = self.app.post(url(controller='koans', action='new'),
+                                 status=403)
+
+        assert not_implemented_msg in response.body
+        assert response.status_code == 403
+
+    def test_update_not_implemented(self):
+        response = self.app.put(url(controller='koans', action='update'),
+                                status=403)
+
+        assert not_implemented_msg in response.body
+        assert response.status_code == 403
+
+    def test_delete_not_implemented(self):
+        response = self.app.delete(url(controller='koans', action='delete'),
+                                   status=403)
+
+        assert not_implemented_msg in response.body
+        assert response.status_code == 403
