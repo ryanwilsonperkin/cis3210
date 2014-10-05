@@ -9,9 +9,11 @@
       <button type="button" class="close" data-dismiss="alert">
         <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
       </button>
-    % for error in c.form_errors:
-      <strong>${error}</strong>
-    % endfor
+      <ul>
+      % for error in c.form_errors:
+        <li><strong>${error}</strong></li>
+      % endfor
+      </ul>
     </div>
   % endif
   <div class="form-group">
