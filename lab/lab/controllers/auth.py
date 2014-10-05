@@ -15,11 +15,11 @@ class AuthController(BaseController):
 
     def register(self):
         """GET/POST /register: register new user."""
-        return "Register"
+        return render('/register.mako')
 
     def login(self):
         """GET/POST /login: login new session as existing user."""
-        return "Login"
+        return render('/login.mako')
 
     def logout(self):
         """POST /logout: logout existing session."""
