@@ -1,18 +1,24 @@
 import json
 
 from lab.tests import *
-from lab.data.koans import koan_dict
 from lab.controllers.koans import not_implemented_msg
+from lab.model import Koan
+from lab.model.meta import Session
 
 class TestKoansController(TestController):
+
+    def setUp(self):
+        self.koan_q = Session.query(Koan)
 
     def test_index(self):
         """Tests that GET /koans returns the list of koan titles."""
         response = self.app.get(url(controller='koans', action='index'))
 
+        koan_titles = [koan.title for koan in self.koan_q.order_by(Koan.id)]
+
         assert response.status_code == 200
         assert response.content_type == 'text/javascript'
-        assert response.json_body == koan_dict.keys()
+        assert response.json_body == koan_titles
 
     def test_show(self):
         """Tests that GET /koans/id returns koan at index id as json."""
@@ -21,9 +27,10 @@ class TestKoansController(TestController):
         assert response.status_code == 200
         assert response.content_type == 'text/javascript'
 
-        koan_title, koan_text = koan_dict.items()[0]
-        assert response.json_body.get('title') == koan_title
-        assert response.json_body.get('text') == koan_text
+        koan = self.koan_q.filter_by(id=1).first()
+
+        assert response.json_body.get('title') == koan.title
+        assert response.json_body.get('text') == koan.text.split('\n')
 
     def test_show_no_id(self):
         """Tests that fetching no id returns 404."""
@@ -42,9 +49,10 @@ class TestKoansController(TestController):
 
     def test_show_invalid_id_too_high(self):
         """Tests that an id bigger than the number of koans returns 404."""
+        num_koans = len(self.koan_q.all())
         response = self.app.get(url(controller='koans',
                                     action='show',
-                                    id=len(koan_dict) + 1),
+                                    id=(num_koans + 1)),
                                 status=404)
         
         assert response.status_code == 404
