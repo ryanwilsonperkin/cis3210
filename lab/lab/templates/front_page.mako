@@ -23,10 +23,11 @@
         <ul class="nav navbar-nav navbar-right">
           % if c.user:
             <li><p class="navbar-right navbar-text"><span class="glyphicon glyphicon-user"></span>
-              Logged in as ${c.user.first_name} ${c.user.last_name}</p></li>
+              Logged in as ${c.user.first_name | h} ${c.user.last_name | h}</p></li>
             <li><a href="/logout">Logout</a></li>
           % else:
             <li><a href="/login">Login</a></li>
+            <li><a href="/register">Register</a></li>
           % endif
         </ul>
       </div>
