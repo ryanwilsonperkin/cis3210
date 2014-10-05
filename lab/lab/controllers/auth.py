@@ -19,7 +19,23 @@ class AuthController(BaseController):
 
     def login(self):
         """GET/POST /login: login new session as existing user."""
-        return render('/login.mako')
+        if request.method == 'GET':
+            c.form_errors = []
+            return render('/login.mako')
+
+        email = request.params.get('email', None)
+        password = request.params.get('password', None)
+        user = self.user_q.filter_by(email=email,
+                                     password=password).first()
+
+        if user:
+            session['logged_in'] = True
+            session['user'] = user
+            session.save()
+            redirect(url('/'))
+        else:
+            c.form_errors = ['Invalid username/password.']
+            return render('/login.mako')
 
     def logout(self):
         """POST /logout: logout existing session."""

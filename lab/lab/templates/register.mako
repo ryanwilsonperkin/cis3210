@@ -2,6 +2,16 @@
 
 <h1>Register</h1>
 <form role="form" name="register" method="post" action="/register">
+  % if len(c.form_errors):
+    <div class="alert alert-danger" role="alert">
+      <button type="button" class="close" data-dismiss="alert">
+        <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+      </button>
+    % for error in c.form_errors:
+      <strong>${error}</strong>
+    % endfor
+    </div>
+  % endif
   <div class="form-group">
     <label for="firstName">First Name</label>
     <input type="text" class="form-control" id="firstName" placeholder="First Name" />
