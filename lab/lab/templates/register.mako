@@ -1,6 +1,8 @@
 <%inherit file="/auth_base.mako" />
 
 <h1>Register</h1>
+<p class="lead">or <a href="/login">login</a></p>
+<hr />
 <form role="form" name="register" method="post" action="/register">
   % if len(c.form_errors):
     <div class="alert alert-danger" role="alert">
