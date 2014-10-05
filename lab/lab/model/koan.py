@@ -1,4 +1,9 @@
 from collections import OrderedDict
+from sqlalchemy import Column
+from sqlalchemy.types import Integer, String, Text
+
+from lab.model.meta import Base
+
 koan_dict = OrderedDict([
     ("Joshu's Dog", [
         """A monk asked Joshu, a Chinese Zen master: "Has a dog Buddha-nature or not?" """,
@@ -260,3 +265,17 @@ koan_dict = OrderedDict([
         """This pupil went to Ummon and asked the same question. Ummon, who happened to have a fan in his hand, said: "This fan will reach to the thirty-third heaven and hit the nose of the presiding deity there. It is like the Dragon Carp of the Eastern Sea tipping over the rain-cloud with his tail." """
     ])
 ])
+
+class Koan(Base):
+    __tablename__ = 'koan'
+
+    id = Column(Integer, primary_key=True)
+    title = Column(String(100))
+    text = Column(Text)
+
+    def __init__(self, title='', text=''):
+        self.title = title
+        self.text = text
+
+    def __repr__(self):
+        return "<Koan('{title}')>".format(title=self.title)
