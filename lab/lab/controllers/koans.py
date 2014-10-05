@@ -5,7 +5,7 @@ from pylons import request, response, session, tmpl_context as c, url
 from pylons.controllers.util import abort, redirect
 
 from lab.lib.base import BaseController, render
-from lab.model.koans import koan_dict
+from lab.model.koan import koan_dict
 
 log = logging.getLogger(__name__)
 

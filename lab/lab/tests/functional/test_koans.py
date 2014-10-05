@@ -1,7 +1,7 @@
 import json
 
 from lab.tests import *
-from lab.model.koans import koan_dict
+from lab.model.koan import koan_dict
 from lab.controllers.koans import not_implemented_msg
 
 class TestKoansController(TestController):
