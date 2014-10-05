@@ -4,6 +4,8 @@ import logging
 import pylons.test
 
 from lab.config.environment import load_environment
+from lab.data.koans import koan_dict
+from lab.model.koan import Koan
 from lab.model.meta import Session, Base
 
 log = logging.getLogger(__name__)
@@ -16,3 +18,9 @@ def setup_app(command, conf, vars):
 
     # Create the tables if they don't already exist
     Base.metadata.create_all(bind=Session.bind)
+
+    # Populate koan table with static data
+    for title, text in koan_dict.iteritems():
+        koan = Koan(title=title, text='\n'.join(text))
+        Session.add(koan)
+        Session.commit()
