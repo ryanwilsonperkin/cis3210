@@ -25,4 +25,5 @@
     <input type="password" class="form-control" id="password" name="password" placeholder="Password" />
   </div>
   <button type="submit" class="btn btn-primary">Login</button>
+  <a href="/" class="btn btn-default">Home</a>
 </form>
