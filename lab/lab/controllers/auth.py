@@ -15,19 +15,28 @@ class AuthController(BaseController):
 
     def register(self):
         """GET/POST /register: register new user."""
+        c.form_errors = []
         if request.method == 'GET':
-            c.form_errors = []
             return render('/register.mako')
 
         first_name = request.params.get('firstName', None)
         last_name = request.params.get('lastName', None)
         email = request.params.get('email', None)
         password = request.params.get('password', None)
-        user = self.user_q.filter_by(email=email,
-                                     password=password).first()
+
+        # Validate received data.
+        if not email:
+            c.form_errors.append('Email field cannot be blank.')
+
+        if not password:
+            c.form_errors.append('Password field cannot be blank.')
+
+        user = self.user_q.filter_by(email=email).first()
 
         if user:
-            c.form_errors = ['That email is already registered.']
+            c.form_errors.append('That email is already registered.')
+
+        if user or not email or not password:
             return render('/register.mako')
         else:
             user = User(first_name=first_name, last_name=last_name,
