@@ -20,7 +20,9 @@ def setup_app(command, conf, vars):
     Base.metadata.create_all(bind=Session.bind)
 
     # Populate koan table with static data
-    for title, text in koan_dict.iteritems():
-        koan = Koan(title=title, text='\n'.join(text))
-        Session.add(koan)
-        Session.commit()
+    num_koans = len(Session.query(Koan).all())
+    if num_koans != len(koan_dict.keys()):
+        for title, text in koan_dict.iteritems():
+            koan = Koan(title=title, text='\n'.join(text))
+            Session.add(koan)
+            Session.commit()

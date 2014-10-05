@@ -38,7 +38,7 @@ $(document).ready(function() {
     $('#koanSelector').change(function() {
         // Get index of koan from value of koanSelector.
         index = g_koansList.indexOf($(this).val());
-        fetchKoan(index);
+        fetchKoan(index + 1);
     });
 
     // Add functionality to fetchRandomKoan.
@@ -60,5 +60,5 @@ $(document).ready(function() {
     arrowFadeLoop();
 
     // Initially display the first koan.
-    fetchKoan(0);
+    fetchKoan(1);
 });

@@ -4,8 +4,8 @@ import logging
 from pylons import request, response, session, tmpl_context as c, url
 from pylons.controllers.util import abort, redirect
 
-from lab.lib.base import BaseController, render
-from lab.data.koans import koan_dict
+from lab.lib.base import BaseController, render, Session
+from lab.model import Koan
 
 log = logging.getLogger(__name__)
 
@@ -13,29 +13,32 @@ not_implemented_msg = 'Method not yet implemented.'
 
 class KoansController(BaseController):
 
+    def __before__(self):
+        self.koan_q = Session.query(Koan)
+
     def index(self):
         """GET /koans: fetch list of koans."""
         if request.method != 'GET':
             abort(405)
         response.headers['Content-Type'] = 'text/javascript'
-        return json.dumps(koan_dict.keys())
+        return json.dumps([koan.title for koan in self.koan_q.all()])
 
     def show(self, id):
         """GET /koans/id: access koan at index id."""
         if request.method != 'GET':
             abort(405)
 
-        if id.isdigit() and 0 <= int(id) < len(koan_dict):
+        if id.isdigit() and 1 <= int(id) <= len(self.koan_q.all()):
             id = int(id)
         else:
             abort(404)
 
-        title, text = koan_dict.items()[id]
+        koan = self.koan_q.filter_by(id=id).first()
 
         response.headers['Content-Type'] = 'text/javascript'
         return json.dumps({
-            "title": title,
-            "text": text
+            "title": koan.title,
+            "text": koan.text.split('\n')
         })
 
     # Unimplemented API endpoints due to lack of database.

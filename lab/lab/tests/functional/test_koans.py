@@ -16,7 +16,7 @@ class TestKoansController(TestController):
 
     def test_show(self):
         """Tests that GET /koans/id returns koan at index id as json."""
-        response = self.app.get(url(controller='koans', action='show', id=0))
+        response = self.app.get(url(controller='koans', action='show', id=1))
 
         assert response.status_code == 200
         assert response.content_type == 'text/javascript'
@@ -44,7 +44,7 @@ class TestKoansController(TestController):
         """Tests that an id bigger than the number of koans returns 404."""
         response = self.app.get(url(controller='koans',
                                     action='show',
-                                    id=len(koan_dict)),
+                                    id=len(koan_dict) + 1),
                                 status=404)
         
         assert response.status_code == 404
