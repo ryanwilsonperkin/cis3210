@@ -21,6 +21,11 @@ def make_map(config):
     # Configure routes for RESTful /koans api.
     map.resource('koan', 'koans')
 
+    # Configure routes for auth contoller.
+    map.connect('/login', controller='auth', action='login')
+    map.connect('/logout', controller='auth', action='logout')
+    map.connect('/register', controller='auth', action='register')
+
     map.connect('/{controller}/{action}')
     map.connect('/{controller}/{action}/{id}')
 
