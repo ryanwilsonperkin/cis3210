@@ -20,7 +20,7 @@ class AuthController(BaseController):
             return render('/register.mako')
 
         first_name = request.params.get('firstName', None)
-        last_name = request.params.get('firstName', None)
+        last_name = request.params.get('lastName', None)
         email = request.params.get('email', None)
         password = request.params.get('password', None)
         user = self.user_q.filter_by(email=email,
