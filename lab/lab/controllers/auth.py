@@ -61,4 +61,7 @@ class AuthController(BaseController):
 
     def logout(self):
         """POST /logout: logout existing session."""
-        return "Logout"
+        session['logged_in'] = False
+        session['user'] = None
+        session.save()
+        redirect(url('/'))
