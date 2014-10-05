@@ -3,6 +3,11 @@ body {
   height: 100%;
 }
 
+.navbar-default {
+  background-color: rgba(250, 250, 250, 0.9);
+  border-bottom: 0;
+}
+
 header {
   background-image: url('/img/leaf.jpg');
   background-position: 50% 100%;
