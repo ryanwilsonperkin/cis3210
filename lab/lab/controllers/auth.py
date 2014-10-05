@@ -15,7 +15,29 @@ class AuthController(BaseController):
 
     def register(self):
         """GET/POST /register: register new user."""
-        return render('/register.mako')
+        if request.method == 'GET':
+            c.form_errors = []
+            return render('/register.mako')
+
+        first_name = request.params.get('firstName', None)
+        last_name = request.params.get('firstName', None)
+        email = request.params.get('email', None)
+        password = request.params.get('password', None)
+        user = self.user_q.filter_by(email=email,
+                                     password=password).first()
+
+        if user:
+            c.form_errors = ['That email is already registered.']
+            return render('/register.mako')
+        else:
+            user = User(first_name=first_name, last_name=last_name,
+                        email=email, password=password)
+            Session.add(user)
+            Session.commit()
+            session['logged_in'] = True
+            session['user'] = user
+            session.save()
+            redirect(url('/'))
 
     def login(self):
         """GET/POST /login: login new session as existing user."""
