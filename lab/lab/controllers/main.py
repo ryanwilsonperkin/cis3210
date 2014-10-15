@@ -11,4 +11,7 @@ class MainController(BaseController):
 
     def index(self):
         c.user = session.get('user', None)
-        return render('/front_page.mako')
+        if c.user is None:
+            redirect(url('/login'))
+        else:
+            return render('/front_page.mako')
