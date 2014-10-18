@@ -27,7 +27,7 @@ pip install -r requirements.txt
 Run the webserver.
 ```bash
 cd lab
-paster serve --reload development.ini
+paster serve --reload production.ini
 ```
 
 Navigate to http://localhost:5000 in your browser.
