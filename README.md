@@ -18,10 +18,10 @@ Fetch this repository.
 git clone https://github.com/ryanwilsonperkin/cis3210.git
 ```
 
-Install the required packages in `requirements.txt`.
+Install the required packages in `requirements_production.txt`.
 ```bash
 cd cis3210
-pip install -r requirements.txt
+pip install -r requirements_production.txt
 ```
 
 Run the webserver.
