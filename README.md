@@ -123,6 +123,11 @@ can be handled by implementing a reverse-proxy such as
 [nginx](http://wiki.nginx.org/Main) to handle the automatic blacklisting of IP
 addresses based on attack-detection protocols.
 
+### RCE (Remote Code Execution)
+
+There is no evaluation of user supplied values on the server-side, thus the
+system is not vulnerable to RCE.
+
 ### SQL Injection
 
 SQL injection attacks are mitigated by the proper use and implementation of the
