@@ -97,6 +97,32 @@ script inclusion vulnerabilities.
 Since pylons relies on custom routes to map requests to controllers, any
 attempts at path traversal will be caught and handled by the error router.
 
+### DOS (Denial of Service)
+
+Since denial of service is such a wide range of attacks, there are several
+ways to mitigate their impact. We will discuss a few, but forgo implementation
+to reduce the overhead of setup for this application. To properly mitigate all
+attacks would involve the installation and configuration of other libraries
+and tools, which are not expected to be present on the instructor's lab
+computer.
+
+One form of denial of service is attempting to crash the server, by uploading
+tremendous amounts of data. This can be mitigated by using Content-Length
+limiting for POST requests, through upgraded versions of the WebOb middleware.
+
+Another form of denial of service is SYN-flooding, whre a malicious user
+attempts to overwhelm the server with SYN packets causing the server to send
+back a large number of ACK packets (as per TCP handshake protocol). This
+form of attack can be mitigated by the use of a custom WSGI HTTP server such as
+Gunicorn, that can add additional attack-detection middleware and ignore
+further packets from malicious users.
+
+Finally, we will consider Distributed Denial of Service (DDOS), where many
+users are performing a DOS attack concurrently against the server. This attack
+can be handled by implementing a reverse-proxy such as
+[nginx](http://wiki.nginx.org/Main) to handle the automatic blacklisting of IP
+addresses based on attack-detection protocols.
+
 ### SQL Injection
 
 SQL injection attacks are mitigated by the proper use and implementation of the
