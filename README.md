@@ -45,6 +45,11 @@ escaping on the text in var. The only data entered by users and displayed is
 the first and last names given during registration. Both values have been
 escaped.
 
+### File Upload XSS
+
+This application does not allow for files to be uploaded (through forms or
+otherwise) and thus is not vulnerable to XSS by file upload.
+
 ### SQL Injection
 
 SQL injection attacks are mitigated by the proper use and implementation of the
