@@ -85,6 +85,13 @@ navigating to the page, and is likely being malicious. Rather than process the
 form data, the page is immediately re-rendered with a new token and an error
 message.
 
+### XSSI (Cross Site Script Inclusion)
+
+The site does not provide any confidential information through scripts and
+thus should not be vulnerable to XSSI. Furthermore, processing of user data is
+only supported through POST requests which are largely incompatible with
+script inclusion vulnerabilities.
+
 ### SQL Injection
 
 SQL injection attacks are mitigated by the proper use and implementation of the
