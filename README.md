@@ -50,6 +50,28 @@ escaped.
 This application does not allow for files to be uploaded (through forms or
 otherwise) and thus is not vulnerable to XSS by file upload.
 
+### Elevation of Privelege
+
+There is only currently one level of user pertaining to the system, so there is
+no concern that a user could somehow elevate their privelege to that of an
+admin. The system does prevent anonymous users from viewing the site, they must
+first either login, or register to view the frontpage. This is guaranteed at
+the controller level which checks that the user has a cookie guaranteeing they
+are a user of the system.
+
+### Cookie Manipulation
+
+Session cookies are handled by session middleware provided by
+[Beaker](http://beaker.readthedocs.org/en/latest). Beaker automatically
+encrypts/decrypts cookies sent to and from the client. Since cookies are
+encrypted client-side, the client is not able to modify them in order to gain
+unwaranted access to the system. A noted flaw: since this entire project
+is open source, including the production.ini file, it is possible for an
+attacker to look at which secret key is being used for encryption by Beaker. It
+is then trivial to examine the Beaker source code to discern the encryption
+scheme and de-crypt the client-side cookies. Were this a true production
+environment, the Beaker secret key would be private and closely guarded.
+
 ### SQL Injection
 
 SQL injection attacks are mitigated by the proper use and implementation of the
