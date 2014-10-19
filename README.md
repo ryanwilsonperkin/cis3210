@@ -144,6 +144,13 @@ The only supplied AJAX is generated from static, project defined data.
 Therefore it is safe to assume that any AJAX requests made to/from the server
 are safe and valid.
 
+### Buffer Overflow
+
+A likely source of buffer overflow would be found in the user entered data
+during registration or login. Therefore, the fields have been limited on the
+server side to truncate data to a certain length before inserting/retrieving
+from the database.
+
 ### SQL Injection
 
 SQL injection attacks are mitigated by the proper use and implementation of the
