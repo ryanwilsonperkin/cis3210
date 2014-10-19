@@ -39,6 +39,7 @@ This application assumes that the user is malicious and takes steps
 to prevent common attacks.
 
 ### Reflected XSS
+
 XSS attacks are mitigated by the proper escaping of user data within mako
 templates.  Mako provides the {var | h} shorthand for performing markupsafe
 escaping on the text in var. The only data entered by users and displayed is
@@ -72,6 +73,18 @@ is then trivial to examine the Beaker source code to discern the encryption
 scheme and de-crypt the client-side cookies. Were this a true production
 environment, the Beaker secret key would be private and closely guarded.
 
+### XSRF (Cross Site Request Forgery)
+
+Each form that involves user data (login and register pages) has a special
+token embedded as a hidden input in the form. This token is randomly generated
+when rendering the page and is also stored in the frontend/backend session.
+When the user submits the form, the token is compared against the session
+token to ensure that the two are equivalent. If the tokens are not equivalent
+it is a sign that someone is attempting to submit the form without first
+navigating to the page, and is likely being malicious. Rather than process the
+form data, the page is immediately re-rendered with a new token and an error
+message.
+
 ### SQL Injection
 
 SQL injection attacks are mitigated by the proper use and implementation of the
@@ -82,7 +95,6 @@ statements in such a way that any user supplied data is properly escaped.
 
 Given more time there are several other security topics I would like to tackle.
 
-* Forms should include session tokens to avoid CSRF attacks
 * Passwords should *NEVER* be stored in plain text
 * Database user/password should not appear in development.ini in plain text
 * Login attempts should be rate-limited

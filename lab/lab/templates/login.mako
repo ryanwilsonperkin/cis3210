@@ -24,6 +24,7 @@
     <label for="password">Password</label>
     <input type="password" class="form-control" id="password" name="password" placeholder="Password" />
   </div>
+  <input type="hidden" id="token" name="token" value="${c.csrf_token}" />
   <button type="submit" class="btn btn-primary">Login</button>
   <a href="/" class="btn btn-default">Home</a>
 </form>
