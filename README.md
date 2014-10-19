@@ -128,6 +128,16 @@ addresses based on attack-detection protocols.
 There is no evaluation of user supplied values on the server-side, thus the
 system is not vulnerable to RCE.
 
+### Configuration Vulnerabilities
+
+Pylons ships with certain secret keys set by default. Since Pylons is an open
+source web framework, these values are known to attackers and will be used to
+exploit the server. To mitigate this, the initial values have been modified to
+be unknown to the attacker. Unfortunately, as previously mentioned, this
+project is also open-source and thus the new values are also known to an
+attacker. In a true production system, the production.ini file containing
+secret keys would be kept private.
+
 ### SQL Injection
 
 SQL injection attacks are mitigated by the proper use and implementation of the
