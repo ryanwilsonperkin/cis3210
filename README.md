@@ -138,6 +138,12 @@ project is also open-source and thus the new values are also known to an
 attacker. In a true production system, the production.ini file containing
 secret keys would be kept private.
 
+### AJAX Vulnerabilities
+
+The only supplied AJAX is generated from static, project defined data.
+Therefore it is safe to assume that any AJAX requests made to/from the server
+are safe and valid.
+
 ### SQL Injection
 
 SQL injection attacks are mitigated by the proper use and implementation of the
