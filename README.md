@@ -92,6 +92,11 @@ thus should not be vulnerable to XSSI. Furthermore, processing of user data is
 only supported through POST requests which are largely incompatible with
 script inclusion vulnerabilities.
 
+### Path Traversal
+
+Since pylons relies on custom routes to map requests to controllers, any
+attempts at path traversal will be caught and handled by the error router.
+
 ### SQL Injection
 
 SQL injection attacks are mitigated by the proper use and implementation of the
