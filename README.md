@@ -36,17 +36,20 @@ Security
 --------
 
 This application assumes that the user is malicious and takes steps
-to prevent common attacks like cross site scripting and sql injection.
+to prevent common attacks.
 
-SQL injection attacks are mitigated by the proper use and implementation of the
-SQLAlchemy library which provides a DB-agnostic ORM. The ORM prepares
-statements in such a way that any user supplied data is properly escaped.
-
+### Reflected XSS
 XSS attacks are mitigated by the proper escaping of user data within mako
 templates.  Mako provides the {var | h} shorthand for performing markupsafe
 escaping on the text in var. The only data entered by users and displayed is
 the first and last names given during registration. Both values have been
 escaped.
+
+### SQL Injection
+
+SQL injection attacks are mitigated by the proper use and implementation of the
+SQLAlchemy library which provides a DB-agnostic ORM. The ORM prepares
+statements in such a way that any user supplied data is properly escaped.
 
 ### Further Consideration
 
