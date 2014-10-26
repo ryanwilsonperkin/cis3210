@@ -10,8 +10,4 @@ log = logging.getLogger(__name__)
 class MainController(BaseController):
 
     def index(self):
-        c.user = session.get('user', None)
-        if c.user is None:
-            redirect(url('/login'))
-        else:
-            return render('/front_page.mako')
+        return render('/front_page.mako')

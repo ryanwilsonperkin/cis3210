@@ -24,11 +24,6 @@ def make_map(config):
     # Configure route for front page
     map.connect('/', controller='main', action='index')
 
-    # Configure routes for auth contoller.
-    map.connect('/login', controller='auth', action='login')
-    map.connect('/logout', controller='auth', action='logout')
-    map.connect('/register', controller='auth', action='register')
-
     map.connect('/{controller}/{action}')
     map.connect('/{controller}/{action}/{id}')
 
