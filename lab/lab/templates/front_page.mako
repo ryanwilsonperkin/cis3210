@@ -57,7 +57,6 @@
       <div id="tweetsRow" class="row">
         <div class="col-sm-4 col-sm-offset-4">
           <a class="twitter-timeline"  href="https://twitter.com/hashtag/3210gatelessgate" data-widget-id="526444294555455489">#3210gatelessgate Tweets</a>
-          <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
         </div>
       </div>
 
@@ -72,5 +71,14 @@
   <script type="text/javascript" src="/js/jquery.js"></script>
   <script type="text/javascript" src="/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="/js/app.js"></script>
+  <script>window.twttr = (function (d, s, id) {
+    var t, js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src= "https://platform.twitter.com/widgets.js";
+    fjs.parentNode.insertBefore(js, fjs);
+    return window.twttr || (t = { _e: [], ready: function (f){t._e.push(f)}});
+    }(document, "script", "twitter-wjs"));
+  </script>
 </body>
 </html>
