@@ -14,6 +14,13 @@ function fetchKoan(id) {
             koanDiv.append($('<p></p>').text(val));
         });
 
+        // Insert tweet button
+        tweetBtn = $('<a></a>')
+            .attr('href', 'https://twitter.com/intent/tweet?button_hashtag=3210gatelessgate&text=' + koan.title)
+            .append($('<i></i>').addClass('glyphicon glyphicon-heart'))
+            .append($('<span></span>').text(' Tweet this koan'));
+        koanDiv.append(tweetBtn);
+
         // Fade in new koan.
         koanDiv.fadeIn();
     });
