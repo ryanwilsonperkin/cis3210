@@ -27,11 +27,14 @@ function get_meetups(text) {
             });
         })
         .fail(function() {
+            var $column_div = $('<div>');
             var $error = $('<div>');
+            $column_div.addClass('col-sm-6 col-sm-offset-2');
             $error.addClass('alert alert-warning');
             $error.attr('role', 'alert');
             $error.text('error: Could not fetch data from api.meetup.com');
-            $('#meetups').append($error);
+            $column_div.append($error);
+            $('#meetups').append($column_div);
         });
 }
 
