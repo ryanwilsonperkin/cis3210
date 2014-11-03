@@ -15,12 +15,15 @@ class MeetupController(BaseController):
         url = 'https://api.meetup.com/find/groups'
         params = {
             'text': id,
+            'location': 'Guelph',
+            'radius': 50,
             'country': 'CA',
             'category': 34,
-            'page': 5,
+            'page': 3,
             'sign': 'true',
             'photo-host': 'public',
             'key': '7b25e5b32615f513d56a3687a5e',
+            'order': 'most_active',
         }
         data = urllib.urlencode(params)
         remote_req = Request(url + '?' + data)
