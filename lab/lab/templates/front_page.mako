@@ -11,14 +11,18 @@
   <header id="intro">
   </header>
   <section id="seach_section">
-    <div class="form-group">
-      <label for="topic_search_input">Topic search</label>
-      <input type="text" class="form-control" id="topic_search_input">
+    <div class="container">
+      <div class="form-group">
+        <label for="topic_search_input">Topic search</label>
+        <input type="text" class="form-control" id="topic_search_input">
+      </div>
+      <button type="submit" class="btn btn-default" id="topic_search_button">Search</button>
     </div>
-    <button type="submit" class="btn btn-default" id="topic_search_button">Search</button>
   </section>
   <section id="meetups_section">
-    <div id='meetups'></div>
+    <div class="container">
+      <div class="row" id='meetups'></div>
+    </div>
   </section>
   <footer>
     <div class="container">
