@@ -1,4 +1,4 @@
-/*global $, jQuery*/
+/*global document, $, jQuery*/
 function append_meetup(meetup) {
     var fields = ['city', 'link', 'lat', 'lon', 'members', 'name', 'who'];
     var $ul = $('<ul>');
@@ -28,3 +28,11 @@ function get_meetups(text) {
             $('#meetups').append($error);
         });
 }
+
+$(document).ready(function() {
+    // Bind get_meetups functionality to form.
+    $('#topic_search_button').click(function() {
+        get_meetups($('#topic_search_input').val());
+    });
+});
+
