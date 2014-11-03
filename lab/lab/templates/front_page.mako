@@ -8,7 +8,11 @@
   <link rel="stylesheet" type="text/css" href="/css/main.css" />
 </head>
 <body>
-  <header id="intro">
+  <header id="intro_section">
+    <div class="container">
+      <h1>Polyglot</h1>
+      <p class="lead">Learn a new programming language, fast.</p>
+    </div>
   </header>
   <section id="seach_section">
     <div class="container">
