@@ -18,9 +18,6 @@ def make_map(config):
     map.connect('/error/{action}', controller='error')
     map.connect('/error/{action}/{id}', controller='error')
 
-    # Configure routes for RESTful /koans api.
-    map.resource('koan', 'koans')
-
     # Configure route for front page
     map.connect('/', controller='main', action='index')
 
