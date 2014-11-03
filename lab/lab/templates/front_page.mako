@@ -11,6 +11,7 @@
   <header id="intro">
   </header>
   <section>
+    <div id='meetups'></div>
   </section>
   <footer>
     <div class="container">
