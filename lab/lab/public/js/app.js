@@ -1,6 +1,6 @@
 /*global document, $, jQuery*/
 function append_meetup(meetup) {
-    var fields = ['city', 'link', 'lat', 'lon', 'members', 'name', 'who'];
+    var fields = ['city', 'state', 'country', 'link', 'lat', 'lon', 'members', 'name', 'who'];
     var $ul = $('<ul>');
     $.each(fields, function() {
         var $li = $('<li>');
