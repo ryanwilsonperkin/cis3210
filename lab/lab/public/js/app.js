@@ -31,7 +31,7 @@ function get_meetups(text) {
             if (data.length === 0) {
                 var $column_div = $('<div>');
                 var $error = $('<div>');
-                $column_div.addClass('col-md-6 col-md-offset-2');
+                $column_div.addClass('col-md-6 col-md-offset-3');
                 $error.addClass('alert alert-warning');
                 $error.attr('role', 'alert');
                 $error.text('Sorry, there are no local meetups that match your search.');
@@ -42,7 +42,7 @@ function get_meetups(text) {
         .fail(function() {
             var $column_div = $('<div>');
             var $error = $('<div>');
-            $column_div.addClass('col-md-6 col-md-offset-2');
+            $column_div.addClass('col-md-6 col-md-offset-3');
             $error.addClass('alert alert-warning');
             $error.attr('role', 'alert');
             $error.text('error: Could not fetch data from api.meetup.com');
