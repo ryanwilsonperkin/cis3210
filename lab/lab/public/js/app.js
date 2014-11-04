@@ -1,16 +1,19 @@
 /*global document, $, jQuery*/
 function append_meetup(meetup) {
-    var fields = ['city', 'state', 'country', 'link', 'lat', 'lon', 'members', 'name', 'who'];
     var $column_div = $('<div>');
     var $meetup_div = $('<div>');
     var $ul = $('<ul>');
     $column_div.addClass('col-sm-4');
     $meetup_div.addClass('well well-sm');
-    $.each(fields, function() {
-        var $li = $('<li>');
-        $li.append($('<strong>').text(this + ': '));
-        $li.append($('<span>').text(meetup[this]));
-        $ul.append($li);
+    
+    var $fields = [
+        $('<h2>').text(meetup.name),
+        $('<p>').text(meetup.city + ', ' + meetup.state + ', ' + meetup.country),
+        $('<p>').text('Join ' + meetup.members + ' ' + meetup.who + '.'),
+        $('<a>').attr('href',meetup.link).text(meetup.link)
+    ];
+    $.each($fields, function() {
+        $meetup_div.append(this);
     });
     $meetup_div.append($ul);
     $column_div.append($meetup_div);
