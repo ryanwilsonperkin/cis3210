@@ -4,6 +4,9 @@ CIS3210 Lab Application
 This is an application under active development for my CIS3210 Computer
 Networks course at the University of Guelph.
 
+The name of the application is Polyglot. It will be an aggregator of
+information and resources to help you learn a new programming language.
+
 Installation
 ------------
 
@@ -35,18 +38,14 @@ Navigate to http://localhost:5000 in your browser.
 API Integration
 ---------------
 
-This project makes use of the Twitter API for custom buttons and widgets.
-The front page contains a dynamically updating list of tweets containing the
-hashtag '#3210gatelessgate'. 
+This application makes use of the Meetup.com API. It allows the user to enter
+technologies that they are interested in and find local meetups based on
+their search query.
 
-Below every koan there will be a link that shows a heart icon and says 'Tweet
-this koan' which, when clicked, will allow the user to tweet about the website.
-The tweet will automatically include the hashtag and the title of the koan and
-can be customized by the user.
+I intend to add additional API integrations with Reddit, Wikipedia, and Amazon.
 
 Technologies
 ------------
 * [Pylons](http://www.pylonsproject.org/projects/pylons-framework/about)
 * [Bootstrap 3](http://getbootstrap.com/)
 * [jQuery](http://jquery.com/)
-* [Twitter widgets and buttons](https://twitter.com/settings/widgets)
