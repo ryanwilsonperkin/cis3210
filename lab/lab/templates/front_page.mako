@@ -33,6 +33,7 @@
   </section>
   <section id="meetups_section">
     <div class="container">
+      <h2>Meetups</h2>
       <div class="row" id='meetups'></div>
     </div>
   </section>

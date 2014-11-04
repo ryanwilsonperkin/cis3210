@@ -7,7 +7,7 @@ function append_meetup(meetup) {
     $meetup_div.addClass('well well-md');
     
     var $fields = [
-        $('<h2>').text(meetup.name),
+        $('<h3>').text(meetup.name),
         $('<p>').text(meetup.city + ', ' + meetup.state + ', ' + meetup.country),
         $('<p>').text('Join ' + meetup.members + ' ' + meetup.who + '.'),
         $('<a>').attr('href',meetup.link).text(meetup.link)
