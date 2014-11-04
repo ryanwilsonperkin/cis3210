@@ -28,6 +28,16 @@ function get_meetups(text) {
             $.each(data, function() {
                 append_meetup(this);
             });
+            if (data.length === 0) {
+                var $column_div = $('<div>');
+                var $error = $('<div>');
+                $column_div.addClass('col-md-6 col-md-offset-2');
+                $error.addClass('alert alert-warning');
+                $error.attr('role', 'alert');
+                $error.text('Sorry, there are no local meetups that match your search.');
+                $column_div.append($error);
+                $('#meetups').append($column_div);
+            }
         })
         .fail(function() {
             var $column_div = $('<div>');
