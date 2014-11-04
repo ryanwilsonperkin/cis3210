@@ -2,7 +2,7 @@ import logging
 import urllib 
 from urllib2 import HTTPError, Request, urlopen
 
-from pylons import request, response, session, tmpl_context as c, url
+from pylons import config, request, response, session, tmpl_context as c, url
 from pylons.controllers.util import abort, redirect
 
 from lab.lib.base import BaseController, render, Session
@@ -22,7 +22,7 @@ class MeetupController(BaseController):
             'page': 3,
             'sign': 'true',
             'photo-host': 'public',
-            'key': '7b25e5b32615f513d56a3687a5e',
+            'key': config['meetup.apikey'],
             'order': 'most_active',
         }
         data = urllib.urlencode(params)
