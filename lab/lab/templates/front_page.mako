@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link href='http://fonts.googleapis.com/css?family=Droid+Serif:400,700' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css" media="screen" />
+  <link href="css/ripples.min.css" rel="stylesheet">
+  <link href="css/material-wfont.min.css" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="/css/main.css" />
 </head>
 <body>
@@ -23,7 +25,7 @@
               <label for="topic_search_input">Search for a programming language you'd like to learn more about.</label>
               <input type="text" class="form-control" id="topic_search_input">
             </div>
-            <button type="submit" class="btn btn-default" id="topic_search_button">Search</button>
+            <button type="submit" class="btn btn-primary" id="topic_search_button">Search</button>
           </form>
         </div>
       </div>
@@ -42,6 +44,8 @@
   </footer>
   <script type="text/javascript" src="/js/jquery.js"></script>
   <script type="text/javascript" src="/js/bootstrap.min.js"></script>
+  <script src="js/ripples.min.js"></script>
+  <script src="js/material.min.js"></script>
   <script type="text/javascript" src="/js/app.js"></script>
 </body>
 </html>

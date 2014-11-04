@@ -56,5 +56,7 @@ $(document).ready(function() {
     $('#topic_search_button').click(function() {
         get_meetups($('#topic_search_input').val());
     });
+    // Initialize material design plugins.
+    $.material.init();
 });
 
