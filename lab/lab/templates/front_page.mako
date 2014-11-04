@@ -19,7 +19,7 @@
       <div class="row">
         <div class="col-sm-4 col-sm-offset-4">
           <div class="form-group">
-            <label for="topic_search_input">Topic search</label>
+            <label for="topic_search_input">Search for a language you'd like to learn more about.</label>
             <input type="text" class="form-control" id="topic_search_input">
           </div>
           <button type="submit" class="btn btn-default" id="topic_search_button">Search</button>
