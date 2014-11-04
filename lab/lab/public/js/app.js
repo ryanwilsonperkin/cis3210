@@ -3,8 +3,8 @@ function append_meetup(meetup) {
     var $column_div = $('<div>');
     var $meetup_div = $('<div>');
     var $ul = $('<ul>');
-    $column_div.addClass('col-sm-4');
-    $meetup_div.addClass('well well-sm');
+    $column_div.addClass('col-md-4');
+    $meetup_div.addClass('well well-md');
     
     var $fields = [
         $('<h2>').text(meetup.name),
@@ -32,7 +32,7 @@ function get_meetups(text) {
         .fail(function() {
             var $column_div = $('<div>');
             var $error = $('<div>');
-            $column_div.addClass('col-sm-6 col-sm-offset-2');
+            $column_div.addClass('col-md-6 col-md-offset-2');
             $error.addClass('alert alert-warning');
             $error.attr('role', 'alert');
             $error.text('error: Could not fetch data from api.meetup.com');

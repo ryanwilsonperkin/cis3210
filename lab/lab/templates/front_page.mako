@@ -17,7 +17,7 @@
   <section id="seach_section">
     <div class="container">
       <div class="row">
-        <div class="col-sm-4 col-sm-offset-4">
+        <div class="col-md-6 col-md-offset-3">
           <div class="form-group">
             <label for="topic_search_input">Search for a language you'd like to learn more about.</label>
             <input type="text" class="form-control" id="topic_search_input">
