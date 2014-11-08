@@ -1,6 +1,5 @@
 import logging
-import urllib 
-from urllib2 import HTTPError, Request, urlopen
+import requests
 
 from pylons import config, request, response, session, tmpl_context as c, url
 from pylons.controllers.util import abort, redirect
@@ -25,12 +24,11 @@ class MeetupController(BaseController):
             'key': config['meetup.apikey'],
             'order': 'most_active',
         }
-        data = urllib.urlencode(params)
-        remote_req = Request(url + '?' + data)
-        try:
-            remote_resp = urlopen(remote_req)
-            response.headers['Content-Type'] = 'application/javascript'
-            return remote_resp.read()
-        except HTTPError as e:
-            abort(e.code)
-
+        resp = requests.get(url, params=params)
+        if resp.ok:
+            response.headers['Content-Type'] = resp.headers.get(
+                'Content-Type',
+                'application/javascript')
+            return resp.content
+        else:
+            abort(resp.status_code)
