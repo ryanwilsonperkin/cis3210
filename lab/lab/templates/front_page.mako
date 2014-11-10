@@ -40,7 +40,6 @@
   <section id="subreddits_section">
     <div class="container">
       <h2>Subreddits</h2>
-      <p class="lead">Coming soon...</p>
       <div class="row" id='subreddits'></div>
     </div>
   </section>
