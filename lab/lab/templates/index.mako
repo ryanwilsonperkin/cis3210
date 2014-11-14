@@ -32,7 +32,15 @@
   </section>
   <section id="user_section">
     <div class="container">
-      <h1 id="user_name"></h1>
+      <div class="errors"></div>
+      <div id="user">
+        <img class="avatar" alt="avatar">
+        <h1 class="name"></h1>
+        <p class="username"></p>
+        <p class="email"></p>
+        <p class="location"></p>
+        <p class="blog"></p>
+      </div>
     </div>
   </section>
   <footer>
