@@ -21,7 +21,7 @@
         <div class="col-md-6 col-md-offset-3">
           <form action="javascript:void(0);">
             <div class="form-group">
-              <label for="user_search_input">Search for a user you'd like to learn more about.</label>
+              <label for="user_search_input">Search for a user.</label>
               <input type="text" class="form-control" id="user_search_input">
             </div>
             <button type="submit" class="btn btn-primary" id="user_search_button">Search</button>
