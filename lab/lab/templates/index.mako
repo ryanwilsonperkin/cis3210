@@ -32,6 +32,7 @@
   </section>
   <section id="user_section">
     <div class="container">
+      <h1 id="user_name"></h1>
     </div>
   </section>
   <footer>
