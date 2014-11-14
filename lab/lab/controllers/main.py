@@ -10,4 +10,4 @@ log = logging.getLogger(__name__)
 class MainController(BaseController):
 
     def index(self):
-        return render('/front_page.mako')
+        return render('/index.mako')
