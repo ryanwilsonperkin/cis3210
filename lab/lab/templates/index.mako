@@ -35,6 +35,11 @@
       <div class="errors"></div>
     </div>
   </section>
+  <section id="repo_section">
+    <div class="container">
+      <div class="errors"></div>
+    </div>
+  </section>
   <footer>
     <div class="container">
       <hr />

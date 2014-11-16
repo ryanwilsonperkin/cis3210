@@ -19,3 +19,13 @@ class GithubController(BaseController):
         github_response = requests.get(url, headers=headers)
         response.content_type = 'application/json'
         return github_response.content
+
+    def repos(self,id):
+        url = 'https://api.github.com/users/{user}/repos'.format(user=id)
+        headers = {
+            'Accept': 'application/vnd.github.v3+json',
+            'User-Agent': 'github-reportcard-ryanwilsonperkin',
+        }
+        github_response = requests.get(url, headers=headers)
+        response.content_type = 'application/json'
+        return github_response.content

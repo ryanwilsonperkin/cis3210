@@ -49,6 +49,30 @@ function render_user(data) {
     return $user;
 }
 
+function render_repo(data) {
+    var $repo = $('<div>');
+    $repo.attr('class', 'repo');
+
+    var $name = $('<h1>');
+    $name.text(data.name);
+    $repo.append($name);
+
+    var $language = $('<p>');
+    $language.text(data.language);
+    $repo.append($language);
+
+    var $html_url = $('<p>');
+    $html_url.text(data.html_url);
+    $repo.append($html_url);
+
+    if (data.description) {
+        var $description = $('<p>');
+        $description.text(data.description);
+        $repo.append($description);
+    }
+    return $repo;
+}
+
 function fetch_user(id) {
     var url = '/github/user/' + id;
     $.getJSON(url)
@@ -64,8 +88,27 @@ function fetch_user(id) {
         });
 }
 
+function fetch_repos(id) {
+    var url = '/github/repos/' + id;
+    $.getJSON(url)
+        .success(function(data) {
+            if (data.message === 'Not Found') {
+                console.log('Repos not found.');
+            } else {
+                $.each(data, function(index, repo_data) {
+                    $('#repo_section .container').append(render_repo(repo_data));
+                });
+            }
+        })
+        .fail(function() {
+            console.log('Failed to retrieve user.');
+        });
+}
+
 $(document).ready(function() {
     $('#user_search_button').click(function() {
-        fetch_user($('#user_search_input').val());
+        var id = $('#user_search_input').val();
+        fetch_user(id);
+        fetch_repos(id);
     });
 });
