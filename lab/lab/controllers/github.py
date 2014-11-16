@@ -26,6 +26,9 @@ class GithubController(BaseController):
             'Accept': 'application/vnd.github.v3+json',
             'User-Agent': 'github-reportcard-ryanwilsonperkin',
         }
-        github_response = requests.get(url, headers=headers)
+        params = {
+            'per_page': 100,
+        }
+        github_response = requests.get(url, params=params, headers=headers)
         response.content_type = 'application/json'
         return github_response.content
