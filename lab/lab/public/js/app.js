@@ -64,6 +64,14 @@ function render_repo(data) {
     var $html_url = $('<p>');
     $html_url.text(data.html_url);
     $repo.append($html_url);
+    
+    var $stargazers = $('<p>');
+    $stargazers.text(data.stargazers_count);
+    $repo.append($stargazers);
+
+    var $forks = $('<p>');
+    $forks.text(data.forks_count);
+    $repo.append($forks);
 
     if (data.description) {
         var $description = $('<p>');
