@@ -33,14 +33,6 @@
   <section id="user_section">
     <div class="container">
       <div class="errors"></div>
-      <div id="user">
-        <img class="avatar" alt="avatar">
-        <h1 class="name"></h1>
-        <p class="username"></p>
-        <p class="email"></p>
-        <p class="location"></p>
-        <p class="blog"></p>
-      </div>
     </div>
   </section>
   <footer>

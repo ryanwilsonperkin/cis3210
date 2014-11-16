@@ -1,34 +1,52 @@
 /*global document, $, jQuery*/
-function display_user(user) {
-    var $user_div = $('#user');
-    var $avatar = $user_div.find('.avatar');
-    var $name = $user_div.find('.name');
-    var $username = $user_div.find('.username');
-    var $email = $user_div.find('.email');
-    var $loc = $user_div.find('.location');
-    var $company = $user_div.find('.company');
-    var $blog = $user_div.find('.blog');
-    if (user.avatar_url) {
-        $avatar.attr('src', user.avatar_url);
+
+function render_user(data) {
+    var $user = $('<div>');
+    $user.attr('id', 'user');
+
+    if (data.avatar_url) {
+        var $avatar = $('<img>');
+        $avatar.addClass('img-responsive');
+        $avatar.attr('src', data.avatar_url);
+        $user.append($avatar);
     }
-    if (user.name) {
-        $name.text(user.name);
+
+    if (data.name) {
+        var $name = $('<h1>');
+        $name.text(data.name);
+        $user.append($name);
     }
-    if (user.username) {
-        $username.text(user.username);
+
+    if (data.username) {
+        var $username = $('<p>');
+        $username.text(data.username);
+        $user.append($username);
     }
-    if (user.email) {
-        $email.text(user.email);
+
+    if (data.email) {
+        var $email = $('<p>');
+        $email.text(data.email);
+        $user.append($email);
     }
-    if (user.location) {
-        $loc.text(user.location);
+
+    if (data.location) {
+        var $location = $('<p>');
+        $location.text(data.location);
+        $user.append($location);
     }
-    if (user.company) {
-        $company.text(user.company);
+
+    if (data.company) {
+        var $company = $('<p>');
+        $company.text(data.company);
+        $user.append($company);
     }
-    if (user.blog) {
-        $blog.text(user.blog);
+
+    if (data.blog) {
+        var $blog = $('<p>');
+        $blog.text(data.blog);
+        $user.append($blog);
     }
+    return $user;
 }
 
 function fetch_user(id) {
@@ -38,7 +56,7 @@ function fetch_user(id) {
             if (data.message === 'Not Found') {
                 console.log('User not found.');
             } else {
-                display_user(data);
+                $('#user_section .container').append(render_user(data));
             }
         })
         .fail(function() {
