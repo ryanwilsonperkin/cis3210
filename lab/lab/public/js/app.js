@@ -58,13 +58,13 @@ function render_repo(data) {
     $repo.append($name);
 
     var $language = $('<p>');
-    $language.text(data.language);
+    $language.text(data.language || "None");
     $repo.append($language);
 
     var $html_url = $('<p>');
     $html_url.text(data.html_url);
     $repo.append($html_url);
-    
+
     var $stargazers = $('<p>');
     $stargazers.text(data.stargazers_count);
     $repo.append($stargazers);
