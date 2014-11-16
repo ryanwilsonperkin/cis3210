@@ -81,6 +81,13 @@ function render_repo(data) {
     return $repo;
 }
 
+// Sort by descending star count.
+function sort_repos(repos) {
+    repos.sort(function (a,b) {
+        return b.stargazers_count - a.stargazers_count;
+    });
+}
+
 function fetch_user(id) {
     var url = '/github/user/' + id;
     $.getJSON(url)
@@ -103,6 +110,7 @@ function fetch_repos(id) {
             if (data.message === 'Not Found') {
                 console.log('Repos not found.');
             } else {
+                sort_repos(data);
                 $.each(data, function(index, repo_data) {
                     $('#repo_section .container').append(render_repo(repo_data));
                 });
