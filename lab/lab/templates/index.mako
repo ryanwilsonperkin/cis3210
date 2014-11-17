@@ -12,8 +12,12 @@
 <body>
   <header id="intro_section">
     <div class="container">
-      <h1>GitHub Resume</h1>
-      <p class="lead">Use your GitHub as your own personal resume.</p>
+      <div class="row">
+        <div class="col-sm-9 col-xs-10">
+          <h1>GitHub Resume</h1>
+          <p class="lead">Potential employers want to see what sort of work you put up on GitHub. Direct them here for the tl;dr version and never worry about having to write a resume again.</p>
+        </div>
+      </div>
     </div>
   </header>
   <section id="seach_section">
