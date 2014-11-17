@@ -1,7 +1,7 @@
 import logging
 import requests
 
-from pylons import request, response, session, tmpl_context as c, url
+from pylons import config, request, response, session, tmpl_context as c, url
 from pylons.controllers.util import abort, redirect
 
 from lab.lib.base import BaseController, render, Session
@@ -16,7 +16,8 @@ class GithubController(BaseController):
             'Accept': 'application/vnd.github.v3+json',
             'User-Agent': 'github-reportcard-ryanwilsonperkin',
         }
-        github_response = requests.get(url, headers=headers)
+        auth = (config['github.oauth'], 'x-oauth-basic')
+        github_response = requests.get(url, auth=auth, headers=headers)
         response.content_type = 'application/json'
         return github_response.content
 
@@ -29,6 +30,7 @@ class GithubController(BaseController):
         params = {
             'per_page': 100,
         }
-        github_response = requests.get(url, params=params, headers=headers)
+        auth = (config['github.oauth'], 'x-oauth-basic')
+        github_response = requests.get(url, auth=auth, params=params, headers=headers)
         response.content_type = 'application/json'
         return github_response.content
