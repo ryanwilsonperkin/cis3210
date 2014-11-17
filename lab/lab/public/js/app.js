@@ -76,34 +76,41 @@ function render_user(data) {
 }
 
 function render_repo(data) {
-    var $repo = $('<div>');
-    $repo.attr('class', 'repo');
+    var $repo = $('<div>', {
+        'class': 'repo well',
+    });
+    var $name = $('<h1>', {
+        'text': data.name,
+    });
+    var $name_link = $('<a>', {
+        'href': data.html_url,
+    }).append($name);
+    var $language = $('<p>', {
+        'text': data.language || "None",
+    });
+    var $stargazers = $('<p>', {
+        'text': data.stargazers_count,
+    });
+    var $forks = $('<p>', {
+        'text': data.forks_count,
+    });
+    var $description = $('<p>', {
+        'class': 'lead',
+        'text': data.description,
+    });
 
-    var $name = $('<h1>');
-    $name.text(data.name);
-    $repo.append($name);
+    $stargazers.prepend($('<strong>', {'text': 'Stars: '}));
+    $stargazers.prepend($('<i>', {'class': 'mdi-action-grade'}));
+    $forks.prepend($('<strong>', {'text': 'Forks: '}));
+    $forks.prepend($('<i>', {'class': 'mdi-communication-call-split'}));
 
-    var $language = $('<p>');
-    $language.text(data.language || "None");
-    $repo.append($language);
-
-    var $html_url = $('<p>');
-    $html_url.text(data.html_url);
-    $repo.append($html_url);
-
-    var $stargazers = $('<p>');
-    $stargazers.text(data.stargazers_count);
-    $repo.append($stargazers);
-
-    var $forks = $('<p>');
-    $forks.text(data.forks_count);
-    $repo.append($forks);
-
+    $repo.append($name_link);
     if (data.description) {
-        var $description = $('<p>');
-        $description.text(data.description);
         $repo.append($description);
     }
+    $repo.append($language);
+    $repo.append($stargazers);
+    $repo.append($forks);
     return $repo;
 }
 
@@ -138,7 +145,7 @@ function fetch_repos(id) {
             } else {
                 sort_repos(data);
                 $.each(data, function(index, repo_data) {
-                    $('#repo_section .container').append(render_repo(repo_data));
+                    $('#repos').append(render_repo(repo_data));
                 });
             }
         })

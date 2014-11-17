@@ -14,3 +14,7 @@ footer {
 i {
   margin-right: 5px;
 }
+
+.repo {
+  overflow: hidden;
+}
