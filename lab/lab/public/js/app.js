@@ -1,51 +1,77 @@
 /*global document, $, jQuery*/
 
 function render_user(data) {
-    var $user = $('<div>');
-    $user.attr('id', 'user');
+    var $user = $('<div>', {
+        'class': 'well',
+    });
+    var $row = $('<div>', {
+        'class': 'row',
+    });
+    var $col_left = $('<div>', {
+        'class': 'col-sm-3',
+    });
+    var $col_right = $('<div>', {
+        'class': 'col-sm-9',
+    });
+    var $avatar = $('<img>', {
+        'class': 'avatar img-responsive',
+        'src': data.avatar_url,
+    });
+    var $name = $('<h1>', {
+        'text': data.name,
+    });
+    var $login = $('<small>', {
+        'text': data.login,
+    });
+    var $email = $('<p>', {
+        'text': data.email,
+    });
+    var $location = $('<p>', {
+        'text': data.location,
+    });
+    var $company = $('<p>', {
+        'text': data.company,
+    });
+    var $blog = $('<p>', {
+        'text': data.blog,
+    });
 
-    if (data.avatar_url) {
-        var $avatar = $('<img>');
-        $avatar.addClass('img-responsive');
-        $avatar.attr('src', data.avatar_url);
-        $user.append($avatar);
-    }
+    // Construct left column.
+    $col_left.append($avatar);
 
-    if (data.name) {
-        var $name = $('<h1>');
-        $name.text(data.name);
-        $user.append($name);
-    }
-
-    if (data.username) {
-        var $username = $('<p>');
-        $username.text(data.username);
-        $user.append($username);
-    }
-
+    // Construct right column.
+    var $login_link = $('<a>', {
+        'href': data.html_url,
+    }).append($login);
+    $name.append($('<br>'));
+    $name.append($login_link);
+    $col_right.append($name);
     if (data.email) {
-        var $email = $('<p>');
-        $email.text(data.email);
-        $user.append($email);
+        var $email_link = $('<a>', {
+            'href': 'mailto:' + data.email,
+        }).append($email);
+        $email.prepend($('<i>', {'class': 'mdi-communication-email'}));
+        $col_right.append($email_link);
     }
-
-    if (data.location) {
-        var $location = $('<p>');
-        $location.text(data.location);
-        $user.append($location);
-    }
-
-    if (data.company) {
-        var $company = $('<p>');
-        $company.text(data.company);
-        $user.append($company);
-    }
-
     if (data.blog) {
-        var $blog = $('<p>');
-        $blog.text(data.blog);
-        $user.append($blog);
+        var $blog_link = $('<a>', {
+            'href': data.blog,
+        }).append($blog);
+        $blog.prepend($('<i>', {'class': 'mdi-action-explore'}));
+        $col_right.append($blog_link);
     }
+    if (data.company) {
+        $company.prepend($('<i>', {'class': 'mdi-communication-business'}));
+        $col_right.append($company);
+    }
+    if (data.location) {
+        $location.prepend($('<i>', {'class': 'mdi-communication-location-on'}));
+        $col_right.append($location);
+    }
+
+    $row.append($col_left);
+    $row.append($col_right);
+    $user.append($row);
     return $user;
 }
 
@@ -95,7 +121,7 @@ function fetch_user(id) {
             if (data.message === 'Not Found') {
                 console.log('User not found.');
             } else {
-                $('#user_section .container').append(render_user(data));
+                $('#user').append(render_user(data));
             }
         })
         .fail(function() {
@@ -122,6 +148,7 @@ function fetch_repos(id) {
 }
 
 $(document).ready(function() {
+    $.material.init();
     $('#user_search_button').click(function() {
         var id = $('#user_search_input').val();
         fetch_user(id);

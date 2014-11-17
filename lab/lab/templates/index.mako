@@ -33,6 +33,10 @@
   <section id="user_section">
     <div class="container">
       <div class="errors"></div>
+      <div class="row">
+        <div id="user" class="col-sm-8 col-sm-offset-2">
+        </div>
+      </div>
     </div>
   </section>
   <section id="repo_section">
