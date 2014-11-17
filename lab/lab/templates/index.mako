@@ -29,13 +29,13 @@
   </section>
   <section id="user_section">
     <div class="container">
-      <div class="errors"></div>
+      <div id="user_errors"></div>
       <div id="user"></div>
     </div>
   </section>
   <section id="repo_section">
     <div class="container">
-      <div class="errors"></div>
+      <div id="repos_errors"></div>
       <div id="repos"></div>
     </div>
   </section>

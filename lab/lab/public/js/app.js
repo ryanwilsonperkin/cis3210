@@ -1,4 +1,11 @@
 /*global document, $, jQuery*/
+function make_error(msg) {
+    var $error_div = $('<div>', {
+        'role': 'alert',
+        'class': 'alert alert-info',
+    });
+    return $error_div.append($('<p>', {'text': msg}));
+}
 
 function language_icon(language) {
     var language_icon_map = {
@@ -152,7 +159,7 @@ function fetch_user(id) {
     return $.getJSON(url)
         .success(function(data) {
             if (data.message === 'Not Found') {
-                console.log('User not found.');
+                $('#user_errors').append(make_error('User not found.'));
             } else {
                 var $user = render_user(data);
                 $user.css({'display': 'none'});
@@ -160,7 +167,7 @@ function fetch_user(id) {
             }
         })
         .fail(function() {
-            console.log('Failed to retrieve user.');
+            $('#user_errors').append(make_error('Failed to retrieve user.'));
         });
 }
 
@@ -169,7 +176,7 @@ function fetch_repos(id) {
     return $.getJSON(url)
         .success(function(data) {
             if (data.message === 'Not Found') {
-                console.log('Repos not found.');
+                $('#repos_errors').append(make_error('Repos not found.'));
             } else {
                 $('<h1>', {'text': data.length + ' Repositories'}).appendTo('#repos');
                 sort_repos(data);
@@ -181,7 +188,7 @@ function fetch_repos(id) {
             }
         })
         .fail(function() {
-            console.log('Failed to retrieve user.');
+            $('#repos_errors').append(make_error('Failed to retrieve repos.'));
         });
 }
 
@@ -190,7 +197,9 @@ $(document).ready(function() {
     $('#user_search_button').click(function() {
         var id = $('#user_search_input').val();
         $('#user').empty();
+        $('#user_errors').empty();
         $('#repos').empty();
+        $('#repos_errors').empty();
         fetch_user(id);
         fetch_repos(id);
     });
