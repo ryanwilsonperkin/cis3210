@@ -128,6 +128,7 @@ function fetch_user(id) {
             if (data.message === 'Not Found') {
                 console.log('User not found.');
             } else {
+                $('#user').empty();
                 $('#user').append(render_user(data));
             }
         })
@@ -144,6 +145,7 @@ function fetch_repos(id) {
                 console.log('Repos not found.');
             } else {
                 sort_repos(data);
+                $('#repos').empty();
                 $.each(data, function(index, repo_data) {
                     $('#repos').append(render_repo(repo_data));
                 });
