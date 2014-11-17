@@ -149,13 +149,14 @@ function sort_repos(repos) {
 
 function fetch_user(id) {
     var url = '/github/user/' + id;
-    $.getJSON(url)
+    return $.getJSON(url)
         .success(function(data) {
             if (data.message === 'Not Found') {
                 console.log('User not found.');
             } else {
-                $('#user').empty();
-                $('#user').append(render_user(data));
+                var $user_data = render_user(data);
+                $user_data.css({'display': 'none'});
+                $user_data.appendTo($('#user')).fadeIn();
             }
         })
         .fail(function() {
@@ -165,13 +166,12 @@ function fetch_user(id) {
 
 function fetch_repos(id) {
     var url = '/github/repos/' + id;
-    $.getJSON(url)
+    return $.getJSON(url)
         .success(function(data) {
             if (data.message === 'Not Found') {
                 console.log('Repos not found.');
             } else {
                 sort_repos(data);
-                $('#repos').empty();
                 $.each(data, function(index, repo_data) {
                     $('#repos').append(render_repo(repo_data));
                 });
@@ -186,7 +186,16 @@ $(document).ready(function() {
     $.material.init();
     $('#user_search_button').click(function() {
         var id = $('#user_search_input').val();
-        fetch_user(id);
-        fetch_repos(id);
+        $('#user').empty();
+        $('#callout').empty();
+        $('#repos').empty();
+        $.when(fetch_user(id), fetch_repos(id)).done(function (d1, d2) {
+            var user = d1[0].login;
+            var n_repos = d2[0].length;
+            var $msg = $('<h1>', {
+                'text': user + ' has ' + n_repos + ' repositories.',
+            });
+            $('#callout').append($msg);
+        });
     });
 });
