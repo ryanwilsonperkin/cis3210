@@ -6,6 +6,7 @@
   <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css" media="screen" />
   <link href="css/ripples.min.css" rel="stylesheet">
   <link href="css/material-wfont.min.css" rel="stylesheet">
+  <link href="css/font-mfizz.css" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="/css/main.css" />
 </head>
 <body>

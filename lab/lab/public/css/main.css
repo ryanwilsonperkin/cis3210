@@ -24,3 +24,7 @@ i {
 .repo {
   overflow: hidden;
 }
+
+.language-icon {
+  font-size: 30px;
+}

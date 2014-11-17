@@ -1,5 +1,30 @@
 /*global document, $, jQuery*/
 
+function language_icon(language) {
+    var language_icon_map = {
+        'C': 'icon-c',
+        'Clojure': 'icon-clojure',
+        'C++': 'icon-cplusplus',
+        'C#': 'icon-csharp',
+        'CSS': 'icon-css',
+        'HTML': 'icon-html',
+        'Java': 'icon-java',
+        'JavaScript': 'icon-javascript',
+        'Objective-C': 'icon-objc',
+        'Perl': 'icon-perl',
+        'PHP': 'icon-php',
+        'Python': 'icon-python',
+        'Ruby': 'icon-ruby',
+        'Scala': 'icon-scala',
+        'Shell': 'icon-shell',
+    };
+    var icon = language_icon_map[language];
+    if (icon) {
+        return $('<i>', {'class': 'language-icon ' + icon});
+    }
+    return '';
+}
+
 function render_user(data) {
     var $user = $('<div>', {
         'class': 'well',
@@ -86,7 +111,7 @@ function render_repo(data) {
         'href': data.html_url,
     }).append($name);
     var $language = $('<p>', {
-        'text': data.language || "None",
+        'text': 'Programmed in ' + (data.language || 'an unrecognized language'),
     });
     var $stargazers = $('<p>', {
         'text': data.stargazers_count,
@@ -99,6 +124,7 @@ function render_repo(data) {
         'text': data.description,
     });
 
+    $language.prepend(language_icon(data.language));
     $stargazers.prepend($('<strong>', {'text': 'Stars: '}));
     $stargazers.prepend($('<i>', {'class': 'mdi-action-grade'}));
     $forks.prepend($('<strong>', {'text': 'Forks: '}));
