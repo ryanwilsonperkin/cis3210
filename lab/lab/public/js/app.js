@@ -154,9 +154,9 @@ function fetch_user(id) {
             if (data.message === 'Not Found') {
                 console.log('User not found.');
             } else {
-                var $user_data = render_user(data);
-                $user_data.css({'display': 'none'});
-                $user_data.appendTo($('#user')).fadeIn();
+                var $user = render_user(data);
+                $user.css({'display': 'none'});
+                $user.appendTo($('#user')).fadeIn();
             }
         })
         .fail(function() {
@@ -173,7 +173,9 @@ function fetch_repos(id) {
             } else {
                 sort_repos(data);
                 $.each(data, function(index, repo_data) {
-                    $('#repos').append(render_repo(repo_data));
+                    var $repo = render_repo(repo_data);
+                    $repo.css({'opacity': '0'});
+                    $repo.appendTo($('#repos'));
                 });
             }
         })
@@ -197,5 +199,14 @@ $(document).ready(function() {
             });
             $('#callout').append($msg);
         });
+    });
+    $(window).scroll( function(){
+        $('.repo').each( function(i){
+            var repo_top = $(this).position().top;
+            var window_bottom = $(window).scrollTop() + $(window).height();
+            if(window_bottom >= repo_top) {
+                $(this).animate({'opacity':'1'}, 300);
+            }
+        }); 
     });
 });
