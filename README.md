@@ -1,30 +1,28 @@
-CIS3210 Lab Application
-=======================
+GitHub Resume
+=============
 
 This is an application under active development for my CIS3210 Computer
 Networks course at the University of Guelph.
 
-The name of the application is Polyglot. It will be an aggregator of
-information and resources to help you learn a new programming language.
+The name of the application is GitHub Resume. It will be a stripped down
+and beautified version of the GitHub.com/:username page with an emphasis
+on readability and aesthetic minimalism.
 
-Installation
 ------------
 
 Note: To run the application on your own computer, you will require python packages
 that can be fetched using *pip*. Instructions for installing pip can be found 
 [here](http://pip.readthedocs.org/en/latest/installing.html).
 
-Note: This application relies on access to a database available only on UofG campus intranet.
-
 Fetch this repository.
 ```bash
 git clone https://github.com/ryanwilsonperkin/cis3210.git
 ```
 
-Install the required packages in `requirements_production.txt`.
+Install the required packages in `requirements.txt`.
 ```bash
 cd cis3210
-pip install -r requirements_production.txt
+pip install -r requirements.txt
 ```
 
 Run the webserver.
@@ -38,11 +36,8 @@ Navigate to http://localhost:5000 in your browser.
 API Integration
 ---------------
 
-This application makes use of the Meetup.com API. It allows the user to enter
-technologies that they are interested in and find local meetups based on
-their search query.
-
-I intend to add additional API integrations with Reddit, Wikipedia, and Amazon.
+This application makes use of the GitHub.com API. It allows the user to enter
+a GitHub username and retrieve information on that user.
 
 Technologies
 ------------

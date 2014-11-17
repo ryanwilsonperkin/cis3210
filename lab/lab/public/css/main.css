@@ -1,8 +1,12 @@
+body {
+  background: url(/img/background.jpeg) no-repeat center center fixed;
+  background-size: cover;
+}
+
 header,
 section,
 footer {
-  padding-top: 20px;
-  padding-bottom: 20px;
+  margin: 40px auto;
 }
 
 footer {
@@ -11,10 +15,21 @@ footer {
   text-align: center;
 }
 
-#meetups_section {
-  background-color: #E0393E;
+i {
+  margin-right: 5px;
 }
 
-#subreddits_section {
-  background-color: #cee3f8;
+#user img {
+  max-width: 200px;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.repo {
+  overflow: hidden;
+}
+
+.language-icon {
+  font-size: 30px;
 }

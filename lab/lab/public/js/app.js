@@ -1,115 +1,215 @@
 /*global document, $, jQuery*/
-function append_meetup(meetup) {
-    var $column_div = $('<div>');
-    var $meetup_div = $('<div>');
-    var $ul = $('<ul>');
-    $column_div.addClass('col-md-4');
-    $meetup_div.addClass('well well-md');
-    
-    var $fields = [
-        $('<h3>').text(meetup.name),
-        $('<p>').text(meetup.city + ', ' + meetup.state + ', ' + meetup.country),
-        $('<p>').text('Join ' + meetup.members + ' ' + meetup.who + '.'),
-        $('<a>').attr('href',meetup.link).text(meetup.link)
-    ];
-    $.each($fields, function() {
-        $meetup_div.append(this);
+function make_error(msg) {
+    var $error_div = $('<div>', {
+        'role': 'alert',
+        'class': 'alert alert-info',
     });
-    $meetup_div.append($ul);
-    $column_div.append($meetup_div);
-    $('#meetups').append($column_div);
+    return $error_div.append($('<p>', {'text': msg}));
 }
 
-function get_meetups(text) {
-    var url = '/meetup/groups/' + text;
-    $.getJSON(url)
+function language_icon(language) {
+    var language_icon_map = {
+        'C': 'icon-c',
+        'Clojure': 'icon-clojure',
+        'C++': 'icon-cplusplus',
+        'C#': 'icon-csharp',
+        'CSS': 'icon-css',
+        'HTML': 'icon-html',
+        'Java': 'icon-java',
+        'JavaScript': 'icon-javascript',
+        'Objective-C': 'icon-objc',
+        'Perl': 'icon-perl',
+        'PHP': 'icon-php',
+        'Python': 'icon-python',
+        'Ruby': 'icon-ruby',
+        'Scala': 'icon-scala',
+        'Shell': 'icon-shell',
+    };
+    var icon = language_icon_map[language];
+    if (icon) {
+        return $('<i>', {'class': 'language-icon ' + icon});
+    }
+    return '';
+}
+
+function render_user(data) {
+    var $user = $('<div>', {
+        'class': 'well',
+    });
+    var $row = $('<div>', {
+        'class': 'row',
+    });
+    var $col_left = $('<div>', {
+        'class': 'col-sm-3',
+    });
+    var $col_right = $('<div>', {
+        'class': 'col-sm-9',
+    });
+    var $avatar = $('<img>', {
+        'class': 'avatar img-responsive',
+        'src': data.avatar_url,
+    });
+    var $name = $('<h1>', {
+        'text': data.name,
+    });
+    var $login = $('<small>', {
+        'text': data.login,
+    });
+    var $email = $('<p>', {
+        'text': data.email,
+    });
+    var $location = $('<p>', {
+        'text': data.location,
+    });
+    var $company = $('<p>', {
+        'text': data.company,
+    });
+    var $blog = $('<p>', {
+        'text': data.blog,
+    });
+
+    // Construct left column.
+    $col_left.append($avatar);
+
+    // Construct right column.
+    var $login_link = $('<a>', {
+        'href': data.html_url,
+    }).append($login);
+    $name.append($('<br>'));
+    $name.append($login_link);
+    $col_right.append($name);
+    if (data.email) {
+        var $email_link = $('<a>', {
+            'href': 'mailto:' + data.email,
+        }).append($email);
+        $email.prepend($('<i>', {'class': 'mdi-communication-email'}));
+        $col_right.append($email_link);
+    }
+    if (data.blog) {
+        var $blog_link = $('<a>', {
+            'href': data.blog,
+        }).append($blog);
+        $blog.prepend($('<i>', {'class': 'mdi-action-explore'}));
+        $col_right.append($blog_link);
+    }
+    if (data.company) {
+        $company.prepend($('<i>', {'class': 'mdi-communication-business'}));
+        $col_right.append($company);
+    }
+    if (data.location) {
+        $location.prepend($('<i>', {'class': 'mdi-communication-location-on'}));
+        $col_right.append($location);
+    }
+
+    $row.append($col_left);
+    $row.append($col_right);
+    $user.append($row);
+    return $user;
+}
+
+function render_repo(data) {
+    var $repo = $('<div>', {
+        'class': 'repo well',
+    });
+    var $name = $('<h1>', {
+        'text': data.name,
+    });
+    var $name_link = $('<a>', {
+        'href': data.html_url,
+    }).append($name);
+    var $language = $('<p>', {
+        'text': 'Programmed in ' + (data.language || 'an unrecognized language'),
+    });
+    var $stargazers = $('<p>', {
+        'text': data.stargazers_count,
+    });
+    var $forks = $('<p>', {
+        'text': data.forks_count,
+    });
+    var $description = $('<p>', {
+        'class': 'lead',
+        'text': data.description,
+    });
+
+    $language.prepend(language_icon(data.language));
+    $stargazers.prepend($('<strong>', {'text': 'Stars: '}));
+    $stargazers.prepend($('<i>', {'class': 'mdi-action-grade'}));
+    $forks.prepend($('<strong>', {'text': 'Forks: '}));
+    $forks.prepend($('<i>', {'class': 'mdi-communication-call-split'}));
+
+    $repo.append($name_link);
+    if (data.description) {
+        $repo.append($description);
+    }
+    $repo.append($language);
+    $repo.append($stargazers);
+    $repo.append($forks);
+    return $repo;
+}
+
+// Sort by descending star count.
+function sort_repos(repos) {
+    repos.sort(function (a,b) {
+        return b.stargazers_count - a.stargazers_count;
+    });
+}
+
+function fetch_user(id) {
+    var url = '/github/user/' + id;
+    return $.getJSON(url)
         .success(function(data) {
-            $('#meetups').empty();
-            $.each(data, function() {
-                append_meetup(this);
-            });
-            if (data.length === 0) {
-                var $column_div = $('<div>');
-                var $error = $('<div>');
-                $column_div.addClass('col-md-6 col-md-offset-3');
-                $error.addClass('alert alert-warning');
-                $error.attr('role', 'alert');
-                $error.text('Sorry, there are no local meetups that match your search.');
-                $column_div.append($error);
-                $('#meetups').append($column_div);
+            if (data.message === 'Not Found') {
+                $('#user_errors').append(make_error('User not found.'));
+            } else {
+                var $user = render_user(data);
+                $user.css({'display': 'none'});
+                $user.appendTo($('#user')).fadeIn();
             }
         })
         .fail(function() {
-            var $column_div = $('<div>');
-            var $error = $('<div>');
-            $column_div.addClass('col-md-6 col-md-offset-3');
-            $error.addClass('alert alert-warning');
-            $error.attr('role', 'alert');
-            $error.text('error: Could not fetch data from api.meetup.com');
-            $column_div.append($error);
-            $('#meetups').append($column_div);
+            $('#user_errors').append(make_error('Failed to retrieve user.'));
         });
 }
 
-function append_subreddit(subreddit) {
-    var $column_div = $('<div>');
-    var $subreddit_div = $('<div>');
-    var $ul = $('<ul>');
-    $column_div.addClass('col-md-4');
-    $subreddit_div.addClass('well well-md');
-
-    var $fields = [
-        $('<h3>').text(subreddit.title),
-        $('<strong>').text(subreddit.subscribers + ' subscribers.'),
-        $('<p>').text(subreddit.public_description),
-        $('<a>').attr('href', '//reddit.com' + subreddit.url).text(subreddit.url)
-    ];
-    $.each($fields, function() {
-        $subreddit_div.append(this);
-    });
-    $subreddit_div.append($ul);
-    $column_div.append($subreddit_div);
-    $('#subreddits').append($column_div);
-}
-
-function get_subreddits(text) {
-    var url = '/subreddit/search/' + text;
-    $.getJSON(url)
+function fetch_repos(id) {
+    var url = '/github/repos/' + id;
+    return $.getJSON(url)
         .success(function(data) {
-            $('#subreddits').empty();
-            $.each(data, function() {
-                append_subreddit(this);
-            });
-            if (data.length === 0) {
-                var $column_div = $('<div>');
-                var $error = $('<div>');
-                $column_div.addClass('col-md-6 col-md-offset-3');
-                $error.addClass('alert alert-warning');
-                $error.attr('role', 'alert');
-                $error.text('Sorry, there are no subreddits that match your search.');
-                $column_div.append($error);
-                $('#subreddits').append($column_div);
+            if (data.message === 'Not Found') {
+                $('#repos_errors').append(make_error('Repos not found.'));
+            } else {
+                $('<h1>', {'text': data.length + ' Repositories'}).appendTo('#repos');
+                sort_repos(data);
+                $.each(data, function(index, repo_data) {
+                    var $repo = render_repo(repo_data);
+                    $repo.css({'opacity': '0'});
+                    $repo.appendTo($('#repos'));
+                });
             }
         })
         .fail(function() {
-            var $column_div = $('<div>');
-            var $error = $('<div>');
-            $column_div.addClass('col-md-6 col-md-offset-3');
-            $error.addClass('alert alert-warning');
-            $error.attr('role', 'alert');
-            $error.text('error: Could not fetch data from reddit.com');
-            $column_div.append($error);
-            $('#subreddits').append($column_div);
+            $('#repos_errors').append(make_error('Failed to retrieve repos.'));
         });
 }
 
 $(document).ready(function() {
-    // Bind get_meetups functionality to form.
-    $('#topic_search_button').click(function() {
-        get_meetups($('#topic_search_input').val());
-        get_subreddits($('#topic_search_input').val());
-    });
-    // Initialize material design plugins.
     $.material.init();
+    $('#user_search_button').click(function() {
+        var id = $('#user_search_input').val();
+        $('#user').empty();
+        $('#user_errors').empty();
+        $('#repos').empty();
+        $('#repos_errors').empty();
+        fetch_user(id);
+        fetch_repos(id);
+    });
+    $(window).scroll( function(){
+        $('.repo').each( function(i){
+            var repo_top = $(this).position().top;
+            var window_bottom = $(window).scrollTop() + $(window).height();
+            if(window_bottom >= repo_top) {
+                $(this).animate({'opacity':'1'}, 300);
+            }
+        }); 
+    });
 });
-
