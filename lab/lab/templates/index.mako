@@ -17,35 +17,25 @@
   </header>
   <section id="seach_section">
     <div class="container">
-      <div class="row">
-        <div class="col-md-6 col-md-offset-3">
-          <form action="javascript:void(0);">
-            <div class="form-group">
-              <label for="user_search_input">Search for a user.</label>
-              <input type="text" class="form-control" id="user_search_input">
-            </div>
-            <button type="submit" class="btn btn-primary" id="user_search_button">Search</button>
-          </form>
+      <form action="javascript:void(0);">
+        <div class="form-group">
+          <label for="user_search_input">Search for a user.</label>
+          <input type="text" class="form-control" id="user_search_input">
         </div>
-      </div>
+        <button type="submit" class="btn btn-primary" id="user_search_button">Search</button>
+      </form>
     </div>
   </section>
   <section id="user_section">
     <div class="container">
       <div class="errors"></div>
-      <div class="row">
-        <div id="user" class="col-sm-8 col-sm-offset-2">
-        </div>
-      </div>
+      <div id="user"></div>
     </div>
   </section>
   <section id="repo_section">
     <div class="container">
       <div class="errors"></div>
-      <div class="row">
-        <div id="repos" class="col-sm-8 col-sm-offset-2">
-        </div>
-      </div>
+      <div id="repos"></div>
     </div>
   </section>
   <footer>
