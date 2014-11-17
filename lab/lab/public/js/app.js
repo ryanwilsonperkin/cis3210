@@ -189,16 +189,9 @@ $(document).ready(function() {
     $('#user_search_button').click(function() {
         var id = $('#user_search_input').val();
         $('#user').empty();
-        $('#callout').empty();
         $('#repos').empty();
-        $.when(fetch_user(id), fetch_repos(id)).done(function (d1, d2) {
-            var user = d1[0].login;
-            var n_repos = d2[0].length;
-            var $msg = $('<h1>', {
-                'text': user + ' has ' + n_repos + ' repositories.',
-            });
-            $('#callout').append($msg);
-        });
+        fetch_user(id);
+        fetch_repos(id);
     });
     $(window).scroll( function(){
         $('.repo').each( function(i){

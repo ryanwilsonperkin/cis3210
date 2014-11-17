@@ -33,11 +33,6 @@
       <div id="user"></div>
     </div>
   </section>
-  <section id="callout_section">
-    <div class="container">
-      <div id="callout"></div>
-    </div>
-  </section>
   <section id="repo_section">
     <div class="container">
       <div class="errors"></div>
