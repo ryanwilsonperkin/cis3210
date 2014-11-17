@@ -171,6 +171,7 @@ function fetch_repos(id) {
             if (data.message === 'Not Found') {
                 console.log('Repos not found.');
             } else {
+                $('<h1>', {'text': data.length + ' Repositories'}).appendTo('#repos');
                 sort_repos(data);
                 $.each(data, function(index, repo_data) {
                     var $repo = render_repo(repo_data);
