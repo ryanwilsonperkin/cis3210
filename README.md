@@ -16,12 +16,12 @@ that can be fetched using *pip*. Instructions for installing pip can be found
 
 Fetch this repository.
 ```bash
-git clone https://github.com/ryanwilsonperkin/cis3210.git
+git clone https://github.com/ryanwilsonperkin/github-resume.git
 ```
 
 Install the required packages in `requirements.txt`.
 ```bash
-cd cis3210
+cd github-resume
 pip install -r requirements.txt
 ```
 
